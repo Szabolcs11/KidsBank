@@ -1,3 +1,4 @@
+import { Animated } from "react-native";
 export type StackNavigatorParamsList = {
   TabNavigator: {};
   Test: {
@@ -29,3 +30,17 @@ export type BoardItemType = {
   subtitle: string;
   image: string;
 }
+
+export type BoardingPaginatorProps = {
+  data: BoardItemType[];
+  scrollX: Animated.Value;
+}
+
+export type BoardingButtonProps = {
+  last: boolean;
+  scrollToNext: () => void;
+  endOfBoarding: () => void;
+}
+export type BoardItemProps = {
+  item: BoardItemType;
+};

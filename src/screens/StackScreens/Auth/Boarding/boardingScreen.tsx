@@ -1,53 +1,76 @@
-import {
-  View,
-  Text,
-  Dimensions,
-  FlatList,
-  Animated,
-  FlatListProps,
-} from 'react-native';
 import React, {useRef, useState} from 'react';
-import BoardItem from './Components/BoardItem';
+import {Animated, FlatList, View, ViewToken} from 'react-native';
+import {navigate} from '../../../../navigation/settings';
 import {BoardItemType} from '../../../../types';
+import BoardItem from './Components/BoardItem';
+import Button from './Components/Button';
 import Paginator from './Components/Paginator';
+import {boardingStyle} from './boardingStyle';
 
 const data = [
   {
     id: 1,
-    title: 'asd',
-    subtitle: 'Subtitle',
+    title: 'Welcome to KidsBank!',
+    subtitle:
+      'Welcome to KidsBank, the family-friendly app that teaches kids about saving and earning! Get ready to embark on a financial adventure with your children.',
     image: 'asd',
   },
   {
     id: 2,
-    title: 'asd2',
-    subtitle: 'Subtitle',
+    title: 'Family, Finance, Made Fun',
+    subtitle:
+      "In KidsBank, parents can create tasks for their children and reward them with virtual coins. It's a fun way to teach responsibility and financial management.",
     image: 'asd',
   },
   {
     id: 3,
-    title: 'asd3',
-    subtitle: 'Subtitle',
+    title: ' Real Rewards for Kids',
+    subtitle:
+      "Kids can spend their hard-earned coins on real-life items they love! From chocolates to toys, it's their savings brought to life.",
+    image: 'asd',
+  },
+  {
+    id: 4,
+    title: 'Saving and Earning Together',
+    subtitle:
+      "Kids can also choose to save their virtual money in the 'Bank' for a return in the future. Parents can even schedule Weekly Meetings to track progress and set goals together.",
+    image: 'asd',
+  },
+  {
+    id: 5,
+    title: 'Join Us / Sign Up',
+    subtitle:
+      'Ready to get started? Join our community and experience the best of KidsBank',
     image: 'asd',
   },
 ] as BoardItemType[];
 
-const {width, height} = Dimensions.get('window');
-
 export default function BoardingScreen() {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const scrollX = useRef(new Animated.Value(0)).current;
-  const slidesRef = useRef(null);
+  const slidesRef = useRef<FlatList>(null);
 
-  const viewAbleItemChanged = useRef(({viewableItems}: any) => {
-    setCurrentIndex(viewableItems[0].index);
-  }).current;
+  const viewAbleItemChanged = useRef(
+    ({viewableItems}: {viewableItems: ViewToken[]}) => {
+      setCurrentIndex(viewableItems[0].index!);
+    },
+  ).current;
 
   const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current;
 
+  const scrollToNext = () => {
+    if (currentIndex < data.length - 1) {
+      slidesRef.current?.scrollToIndex({index: currentIndex + 1});
+    }
+  };
+
+  const handleNavigateToSingUp = () => {
+    navigate('Login', {});
+  };
+
   return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <View style={{flex: 3}}>
+    <View style={boardingStyle.container}>
+      <View style={{flex: 1, width: '100%'}}>
         <FlatList
           data={data}
           horizontal
@@ -65,7 +88,14 @@ export default function BoardingScreen() {
           scrollEventThrottle={32}
           ref={slidesRef}
         />
-        <Paginator data={data} />
+        <Paginator data={data} scrollX={scrollX} />
+        <View style={boardingStyle.fillbackground}>
+          <Button
+            endOfBoarding={handleNavigateToSingUp}
+            last={currentIndex == data.length - 1}
+            scrollToNext={scrollToNext}
+          />
+        </View>
       </View>
     </View>
   );
