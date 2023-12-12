@@ -11,6 +11,7 @@ export type StackNavigatorParamsList = {
   // Auth
   Login: {};
   Register: {};
+  ForgotPassword: {};
   // Boarding
   Boarding: {}
 };
@@ -40,6 +41,7 @@ export type BoardingButtonProps = {
   last: boolean;
   scrollToNext: () => void;
   endOfBoarding: () => void;
+  handleNavigateToLogin: () => void;
 }
 export type BoardItemProps = {
   item: BoardItemType;

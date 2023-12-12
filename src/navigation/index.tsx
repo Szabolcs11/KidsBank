@@ -17,6 +17,7 @@ import {StackNavigatorParamsList, TabNavigatorParamsList} from '../types';
 import Modal from './Modal';
 import {basicScreenPreset, modalOption, navigationRef} from './settings';
 import BoardingScreen from '../screens/StackScreens/Auth/Boarding/boardingScreen';
+import ForgotPassword from '../screens/StackScreens/Auth/ForgotPassword/forgotPassword';
 
 export const storage = new MMKV();
 const Tab = createBottomTabNavigator<TabNavigatorParamsList>();
@@ -57,7 +58,6 @@ export default function index() {
         name={iconName}
       />
     );
-    return <Icon type={iconType} name={iconName} />;
   };
 
   const renderTabNavigation = useCallback((a: any) => {
@@ -118,6 +118,10 @@ export default function index() {
                 <Stack.Screen name="Boarding" component={BoardingScreen} />
                 <Stack.Screen name="Login" component={LoginScreen} />
                 <Stack.Screen name="Register" component={RegisterScreen} />
+                <Stack.Screen
+                  name="ForgotPassword"
+                  component={ForgotPassword}
+                />
               </>
             )}
           </Stack.Navigator>

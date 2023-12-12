@@ -18,6 +18,7 @@ export const boardingStyle = StyleSheet.create({
         width: '100%',
         marginBottom: spacing.double,
         paddingHorizontal: spacing.quadruple,
+        // backgroundColor: 'red'
     },
     button: {
         backgroundColor: palette.primary,

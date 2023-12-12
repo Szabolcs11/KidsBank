@@ -65,6 +65,10 @@ export default function BoardingScreen() {
   };
 
   const handleNavigateToSingUp = () => {
+    navigate('Register', {});
+  };
+
+  const handleNavigateToLogin = () => {
     navigate('Login', {});
   };
 
@@ -92,6 +96,7 @@ export default function BoardingScreen() {
         <View style={boardingStyle.fillbackground}>
           <Button
             endOfBoarding={handleNavigateToSingUp}
+            handleNavigateToLogin={handleNavigateToLogin}
             last={currentIndex == data.length - 1}
             scrollToNext={scrollToNext}
           />

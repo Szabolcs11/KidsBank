@@ -20,6 +20,8 @@ export const palette = {
     doublehalf: unit*2.5,
     triple: unit*3,
     quadruple: unit*4,
+    quintruple: unit*5,
+    sixfold: unit*6,
   };
   export const fontSize = {
     small: 12,
