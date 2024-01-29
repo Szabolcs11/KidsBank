@@ -10,12 +10,14 @@ import BoardingScreen from '../screens/StackScreens/Auth/Boarding/boardingScreen
 import ForgotPassword from '../screens/StackScreens/Auth/ForgotPassword/forgotPassword';
 import LoginScreen from '../screens/StackScreens/Auth/Login/loginScreen';
 import RegisterScreen from '../screens/StackScreens/Auth/Register/registerScreen';
-import TestScreen from '../screens/StackScreens/Test/testScreen';
+import AddFamilyMember from '../screens/StackScreens/AddFamilyMember/AddFamilyMember';
 import {palette} from '../style';
 import {StackNavigatorParamsList, UserType} from '../types';
 import MainDrawer from './Drawer/index';
 import Modal from './Modal';
 import {basicScreenPreset, modalOption, navigationRef} from './settings';
+import Loader from '../components/Loader';
+import EditFamilyMember from '../screens/StackScreens/EditFamilyMember/EditFamilyMember';
 
 export const storage = new MMKV();
 const Stack = createStackNavigator<StackNavigatorParamsList>();
@@ -34,6 +36,7 @@ export default function index() {
     axios.get(ENDPOINTS.AUTH, {withCredentials: true}).then(res => {
       if (res.data.success) {
         setUser(res.data.user);
+        storage.set(MMKV_KEYS.USER, JSON.stringify(res.data.user));
       } else {
         setUser(false);
       }
@@ -50,11 +53,7 @@ export default function index() {
   };
 
   if (isLoading) {
-    return (
-      <View>
-        <ActivityIndicator size="large" color={palette.primary} />
-      </View>
-    );
+    return <Loader />;
   }
 
   return (
@@ -69,8 +68,14 @@ export default function index() {
             />
             <Stack.Screen
               options={{gestureEnabled: false}}
-              name="Test"
-              component={TestScreen}
+              name="AddFamilyMember"
+              initialParams={user}
+              component={AddFamilyMember}
+            />
+            <Stack.Screen
+              options={{gestureEnabled: false}}
+              name="EditFamilyMember"
+              component={EditFamilyMember}
             />
             <Stack.Screen
               name="Modal"

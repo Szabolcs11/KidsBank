@@ -2,7 +2,7 @@ import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import React, {useState} from 'react';
 import {labels} from '../../../../constans/texts';
 import {navigate} from '../../../../navigation/settings';
-import {palette} from '../../../../style';
+import {errortextStyle, palette} from '../../../../style';
 import {authStyle} from '../authStyle';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {Controller, useForm} from 'react-hook-form';
@@ -67,7 +67,7 @@ export default function RegisterScreen() {
         )}
       />
       {errors.username ? (
-        <Text style={authStyle.errortext}>{errors.username.message}</Text>
+        <Text style={errortextStyle}>{errors.username.message}</Text>
       ) : (
         <></>
       )}
@@ -86,7 +86,7 @@ export default function RegisterScreen() {
         )}
       />
       {errors.email ? (
-        <Text style={authStyle.errortext}>{errors.email.message}</Text>
+        <Text style={errortextStyle}>{errors.email.message}</Text>
       ) : (
         <></>
       )}
@@ -106,7 +106,7 @@ export default function RegisterScreen() {
         )}
       />
       {errors.password ? (
-        <Text style={authStyle.errortext}>{errors.password.message}</Text>
+        <Text style={errortextStyle}>{errors.password.message}</Text>
       ) : (
         <></>
       )}
@@ -126,7 +126,7 @@ export default function RegisterScreen() {
         )}
       />
       {errors.password ? (
-        <Text style={authStyle.errortext}>{errors.password.message}</Text>
+        <Text style={errortextStyle}>{errors.password.message}</Text>
       ) : (
         <></>
       )}

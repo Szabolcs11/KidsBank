@@ -12,3 +12,15 @@ export const registerSchema = yup.object().shape({
     password: yup.string().required("A jelszó kötelező!"),
     passwordagain: yup.string().required("A jelszó újra kötelező!").oneOf([yup.ref("password")], "A jelszavaknak egyezniük kell!"),
 })
+
+export const familyMembersSchema = yup.object().shape({
+    nickname: yup.string().required("A becenév kötelező!"),
+    birthDate: yup.date().required("A születési év kötelező!"),
+    points: yup.number().required("A pontok száma kötelező!"),
+})
+
+export const updateFamilyMemberSchema = yup.object().shape({
+    nickname: yup.string().required("A becenév kötelező!"),
+    birthDate: yup.date().required("A születési év kötelező!"),
+    points: yup.number().required("A pontok száma kötelező!"),
+})

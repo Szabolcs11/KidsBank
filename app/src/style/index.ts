@@ -35,3 +35,70 @@ export const palette = {
     xxlarge: 32,
     xxxlarge: 68,
   };
+
+export const ContainerStyle: ViewStyle = {
+    flex: 1,
+    backgroundColor: palette.palegray,
+    alignItems: 'center',
+    padding: spacing.single,
+    height: "100%"
+};
+
+export const TitleContainer: ViewStyle = {
+  borderBottomWidth: 2,
+  borderBottomColor: palette.gray,
+  width,
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'center',
+};
+
+export const TitleStyle: TextStyle = {
+    fontSize: fontSize.large,
+    fontWeight: 'bold',
+    color: palette.black,
+    textAlign: 'center',
+    padding: spacing.double,
+};
+
+export const BackIconStyle: ViewStyle = {
+    position: 'absolute',
+    left: spacing.single,
+};
+
+export const TextInputStyle: TextStyle = {
+    fontSize: fontSize.medium,
+    color: palette.black,
+    padding: spacing.single,
+    borderColor: palette.gray,
+    borderWidth: 1,
+    borderRadius: spacing.single,
+    marginVertical: spacing.single,
+};
+
+export const ButtonStyle: ViewStyle = {
+    backgroundColor: palette.primary,
+    borderRadius: spacing.single,
+    paddingHorizontal: spacing.doublehalf,
+    paddingVertical: spacing.singlehalf,
+    marginVertical: spacing.single,
+    alignItems: 'center',
+};
+
+export const errortextStyle: TextStyle = {
+    color: palette.red,
+    fontSize: fontSize.small,
+};
+
+export const alignments = {
+  centerBasic: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  } as ViewStyle,
+  flexRow: {
+    flexDirection: 'row',
+  } as ViewStyle,
+  justifyCenter: {
+    justifyContent: 'center',
+  } as ViewStyle,
+}

@@ -37,6 +37,7 @@ const CustomDrawer = (props: any) => {
               fontWeight: 'bold',
               textAlign: 'center',
               width: '100%',
+              color: palette.white,
             }}>
             KidsBank
           </Text>
@@ -61,7 +62,7 @@ const CustomDrawer = (props: any) => {
             width: '95%',
           }}></View>
         <DrawerItem
-          label="Kilépés"
+          label="Kijelentkezés"
           onPress={() => {}}
           inactiveTintColor={palette.black}
           labelStyle={drawerItemStyle.drawerLabelStyle as any}

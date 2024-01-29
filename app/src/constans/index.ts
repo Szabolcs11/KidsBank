@@ -5,6 +5,10 @@ export const ENDPOINTS = {
   REGISTER: API_URL + '/auth/register',
   LOGIN: API_URL + '/auth/login',
   LOGOUT: API_URL + '/auth/logout',
+  ADD_FAMILY_MEMBER: API_URL + '/family/add',
+  GET_FAMILY_MEMBERS: API_URL + '/family/get',
+  UPDATE_FAMILY_MEMBER: API_URL + '/family/update',
+  DELETE_FAMILY_MEMBER: API_URL + '/family/delete',
 }
 
 export const SCREENS = {

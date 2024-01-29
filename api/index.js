@@ -12,6 +12,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/auth", require("./routes/auth"));
+app.use("/family", require("./routes/family"));
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

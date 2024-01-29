@@ -1,8 +1,9 @@
 import { Animated } from "react-native";
 export type StackNavigatorParamsList = {
   MainDrawer: {};
-  Test: {
-    test: string;
+  AddFamilyMember: {};
+  EditFamilyMember: {
+    Children: ChildrenType;
   };
   Modal: {
     content: () => JSX.Element;
@@ -64,4 +65,12 @@ export type UserType = {
   Id: number;
   Username: string;
   Email: string;
+}
+
+export type ChildrenType = {
+  Id: number;
+  Nickname: string;
+  BirthDate: Date;
+  Age: number;
+  Points: number;
 }

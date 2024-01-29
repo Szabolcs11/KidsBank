@@ -84,10 +84,64 @@ async function deleteUserSession(token) {
   return true;
 }
 
+async function createFamilyMember(nickname, birthDate, points, userId) {
+  const [res] = await (
+    await conn
+  ).query("INSERT INTO family_children (nickname, birthDate, points, ControllerUserId) VALUES (?, ?, ?, ?)", [
+    nickname,
+    birthDate,
+    points,
+    userId,
+  ]);
+  if (!res.insertId) {
+    return false;
+  }
+  const [user] = await (await conn).query("SELECT * FROM family_children WHERE Id = ?", [res.insertId]);
+  if (user.length < 1) {
+    return false;
+  }
+  return user[0];
+}
+
+async function getFamilyChildren(userId) {
+  const [res] = await (await conn).query("SELECT * FROM family_children WHERE ControllerUserId = ?", [userId]);
+  if (res.length < 1) {
+    return false;
+  }
+  return res;
+}
+
+async function updateChild(ChildId, Nickname, Points, bornDate) {
+  const [res] = await (
+    await conn
+  ).query("UPDATE family_children SET nickname = ?, points = ?, birthDate = ? WHERE Id = ?", [
+    Nickname,
+    Points,
+    bornDate,
+    ChildId,
+  ]);
+  if (res.affectedRows < 1) {
+    return false;
+  }
+  return true;
+}
+
+async function deleteChild(ChildId) {
+  const [res] = await (await conn).query("DELETE FROM family_children WHERE Id = ?", [ChildId]);
+  if (res.affectedRows < 1) {
+    return false;
+  }
+  return true;
+}
+
 module.exports = {
   Authenticate,
   returnError,
   createUser,
   loginUser,
   deleteUserSession,
+  createFamilyMember,
+  getFamilyChildren,
+  updateChild,
+  deleteChild,
 };

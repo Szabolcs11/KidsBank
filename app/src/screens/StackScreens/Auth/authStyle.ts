@@ -65,8 +65,4 @@ export const authStyle = StyleSheet.create({
         width: (width / 2)-spacing.sixfold,
         backgroundColor: palette.gray
     },
-    errortext: {
-        color: palette.red,
-        fontSize: fontSize.small,
-    }
 });

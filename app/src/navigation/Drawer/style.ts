@@ -1,3 +1,5 @@
+import { palette } from "../../style";
+
 export const drawerItemStyle = {
     drawerItemStyle: {
       width: '95%',
@@ -7,6 +9,7 @@ export const drawerItemStyle = {
       width: '115%',
       margin: 0,
       flexGrow: 1,
+      color: palette.white
     },
   };
   

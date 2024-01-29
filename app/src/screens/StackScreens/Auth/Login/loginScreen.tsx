@@ -4,7 +4,7 @@ import {Controller, set, useForm} from 'react-hook-form';
 import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {labels} from '../../../../constans/texts';
 import {navigate} from '../../../../navigation/settings';
-import {palette} from '../../../../style';
+import {errortextStyle, palette} from '../../../../style';
 import {loginSchema} from '../Schemas';
 import {authStyle} from '../authStyle';
 import axios from 'axios';
@@ -62,7 +62,7 @@ export default function LoginScreen() {
         )}
       />
       {errors.username ? (
-        <Text style={authStyle.errortext}>{errors.username.message}</Text>
+        <Text style={errortextStyle}>{errors.username.message}</Text>
       ) : (
         <></>
       )}
@@ -82,7 +82,7 @@ export default function LoginScreen() {
         )}
       />
       {errors.password ? (
-        <Text style={authStyle.errortext}>{errors.password.message}</Text>
+        <Text style={errortextStyle}>{errors.password.message}</Text>
       ) : (
         <></>
       )}
