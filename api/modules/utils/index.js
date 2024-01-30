@@ -1,3 +1,4 @@
+const { get } = require("../../routes/auth/loginUser.js");
 const conn = require("./../mysql/index.js");
 const bcrypt = require("bcryptjs");
 
@@ -312,8 +313,6 @@ async function getChild(id) {
 async function reedemReward(RewardId) {
   const reward = await getReward(RewardId);
   const child = await getChild(reward.ChildId);
-  console.log(child.Points);
-  console.log(reward.Points);
   if (child.Points < reward.Points) {
     return "NotEnoughPoints";
   }
@@ -332,9 +331,35 @@ async function reedemReward(RewardId) {
     ).execute("UPDATE family_children SET Points = Points - ? WHERE id = ?", [reward.Points, reward.ChildId]);
     await (await conn).execute("DELETE FROM family_rewards WHERE id = ?", [RewardId]);
     await (await conn).commit();
-    console.log("Reward redeemed successfully");
   } catch (err) {
-    console.log(err);
+    await (await conn).rollback();
+    return false;
+  } finally {
+    return true;
+  }
+}
+
+async function completeTask(TaskId) {
+  const task = await getTask(TaskId);
+  if (!task) {
+    return false;
+  }
+  try {
+    await (await conn).beginTransaction();
+    const [rewardRows] = await (
+      await conn
+    ).execute("SELECT Points, Id FROM family_children WHERE Id = ? FOR UPDATE", [task.ChildId]);
+    const user = rewardRows[0];
+    await (
+      await conn
+    ).execute("UPDATE family_children SET Points = Points + ? WHERE id = ?", [task.Points, task.ChildId]);
+
+    await (await conn).execute("DELETE FROM family_tasks WHERE id = ?", [TaskId]);
+    await (await conn).commit();
+    if (!user) {
+      throw new Error("User not found");
+    }
+  } catch (err) {
     await (await conn).rollback();
     return false;
   } finally {
@@ -363,4 +388,5 @@ module.exports = {
   updateReward,
   deleteReward,
   reedemReward,
+  completeTask,
 };

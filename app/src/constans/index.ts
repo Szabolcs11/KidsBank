@@ -13,6 +13,7 @@ export const ENDPOINTS = {
   GET_TASKS: API_URL + '/task/get',
   UPDATE_TASK: API_URL + '/task/update',
   DELETE_TASK: API_URL + '/task/delete',
+  COMPLETE_TASK: API_URL + '/task/complete',
   ADD_WEEKLY_MEETING: API_URL + '/weeklymeeting/add',
   GET_WEEKLY_MEETINGS: API_URL + '/weeklymeeting/get',
   ADD_REWARD: API_URL + '/reward/add',

@@ -12,7 +12,6 @@ router.post("/", async (req, res) => {
   }
 
   const reward = await reedemReward(RewardId);
-  console.log("rew", reward);
   if (!reward) {
     return await returnError(req, res, "Nem található jutalom");
   }

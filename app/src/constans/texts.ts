@@ -38,5 +38,6 @@ export const labels = {
     DeleteReward: 'Jutalom törlése',
     DeleteRewardMessage: 'Biztosan törölni szeretnéd a jutalmat?',
     Reedem: 'Beváltás',
+    Complete: 'Teljesítés',
 
 }

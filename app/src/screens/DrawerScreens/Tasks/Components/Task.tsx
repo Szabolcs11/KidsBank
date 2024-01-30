@@ -10,6 +10,7 @@ import {alignments, fontSize, palette, spacing} from '../../../../style';
 import {TaskType} from '../../../../types';
 import {formatDate} from '../../../../utils';
 import {fetchTasks} from '../TasksScreen';
+import {fetchChildren} from '../../FamilyMembers/familyMembersScreen';
 
 interface TaskProps {
   isHeader?: boolean;
@@ -25,6 +26,19 @@ export default function Task({isEven, isHeader, task}: TaskProps) {
     if (res.data.success) {
       showToast('success', res.data.message);
       fetchTasks();
+    } else {
+      showToast('error', res.data.message);
+    }
+  };
+
+  const handleCompleteTask = async (id: number) => {
+    let res = await axios.post(ENDPOINTS.COMPLETE_TASK, {
+      TaskId: id,
+    });
+    if (res.data.success) {
+      showToast('success', res.data.message);
+      fetchTasks();
+      fetchChildren();
     } else {
       showToast('error', res.data.message);
     }
@@ -68,10 +82,23 @@ export default function Task({isEven, isHeader, task}: TaskProps) {
         <View
           style={[
             styles.column,
-            alignments.flexRow,
+            alignments.flexRowCenter,
             alignments.justifyCenter,
             {gap: spacing.single, width: '100%', marginTop: spacing.single},
           ]}>
+          <TouchableOpacity
+            style={styles.ReedemBtn}
+            onPress={() => {
+              handleCompleteTask(task!.Id);
+            }}>
+            <Text
+              style={{
+                color: palette.white,
+                fontSize: fontSize.medium,
+              }}>
+              {labels.Complete}
+            </Text>
+          </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
               navigate('EditTask', {
@@ -142,5 +169,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: palette.black,
     fontSize: 16,
+  },
+  ReedemBtn: {
+    backgroundColor: palette.primary,
+    borderRadius: spacing.single,
+    paddingHorizontal: spacing.half,
+    paddingVertical: spacing.single,
+    marginVertical: spacing.single,
+    alignItems: 'center',
   },
 });

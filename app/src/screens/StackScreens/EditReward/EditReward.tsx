@@ -37,7 +37,6 @@ export default function EditReward({
   navigation,
   route,
 }: StackScreenProps<StackNavigatorParamsList, 'EditReward'>) {
-  console.log(route.params.Reward);
   const {
     control,
     handleSubmit,
