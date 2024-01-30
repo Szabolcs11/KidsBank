@@ -99,6 +99,11 @@ export const alignments = {
   flexRow: {
     flexDirection: 'row',
   } as ViewStyle,
+  flexRowCenter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // justifyContent: 'center',
+  } as ViewStyle,
   justifyCenter: {
     justifyContent: 'center',
   } as ViewStyle,

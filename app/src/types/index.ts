@@ -10,6 +10,7 @@ export type StackNavigatorParamsList = {
   EditTask: {
     Task: TaskType;
   };
+  AddWeeklyMeeting: {};
   Modal: {
     content: () => JSX.Element;
     title: string;

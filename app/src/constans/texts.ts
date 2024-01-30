@@ -29,4 +29,7 @@ export const labels = {
     Deadline: "Határidő",
     DeleteTask: "Feladat törlése",
     DeleteTaskMessage: "Biztosan törölni szeretnéd a feladatot?",
+    Title: "Cím",
+    Text: "Szöveg",
+    AddNewWeeklyMeeting: "Új heti megbeszélés hozzáadása",
 }

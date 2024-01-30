@@ -201,6 +201,40 @@ async function updateTask(ChildId, TaskName, Deadline, Points, TaskId) {
   return true;
 }
 
+async function getMeeting(MeetingId) {
+  const [res] = await (await conn).query("SELECT * FROM family_meetings WHERE Id = ?", [MeetingId]);
+  if (res.length < 1) {
+    return false;
+  }
+  return res[0];
+}
+
+async function getMeetings(UserId) {
+  const [res] = await (
+    await conn
+  ).query("SELECT * FROM family_meetings WHERE ControllerUserId = ? ORDER BY Date DESC", [UserId]);
+  if (res.length < 1) {
+    return [];
+  }
+  return res;
+}
+
+async function addMeeting(Title, Text, Date, UserId) {
+  const [res] = await (
+    await conn
+  ).query("INSERT INTO family_meetings (Title, Text, Date, ControllerUserId) VALUES (?, ?, ?, ?)", [
+    Title,
+    Text,
+    Date,
+    UserId,
+  ]);
+  if (!res.insertId) {
+    return false;
+  }
+  const meeting = await getMeeting(res.insertId);
+  return meeting;
+}
+
 module.exports = {
   Authenticate,
   returnError,
@@ -215,4 +249,6 @@ module.exports = {
   getTasks,
   updateTask,
   removeTask,
+  getMeetings,
+  addMeeting,
 };

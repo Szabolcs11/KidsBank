@@ -20,6 +20,7 @@ import Loader from '../components/Loader';
 import EditFamilyMember from '../screens/StackScreens/EditFamilyMember/EditFamilyMember';
 import AddTask from '../screens/StackScreens/AddTask/AddTask';
 import EditTask from '../screens/StackScreens/EditTask/EditTask';
+import AddWeeklyMeeting from '../screens/StackScreens/AddWeeklyMeeting/AddWeeklyMeeting';
 
 export const storage = new MMKV();
 const Stack = createStackNavigator<StackNavigatorParamsList>();
@@ -89,6 +90,12 @@ export default function index() {
               options={{gestureEnabled: false}}
               name="EditTask"
               component={EditTask}
+            />
+            <Stack.Screen
+              options={{gestureEnabled: false}}
+              name="AddWeeklyMeeting"
+              initialParams={user}
+              component={AddWeeklyMeeting}
             />
             <Stack.Screen
               name="Modal"

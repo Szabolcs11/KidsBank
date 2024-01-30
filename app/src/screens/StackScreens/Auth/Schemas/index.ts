@@ -31,3 +31,9 @@ export const tasksSchema = yup.object().shape({
     Deadline: yup.date().required("A határidő kötelező!"),
     Points: yup.number().required("A pontok száma kötelező!"),
 });
+
+export const weeklyMeetingsSchema = yup.object().shape({
+    Title: yup.string().required("A cím kötelező!"),
+    Text: yup.string().required("A szöveg kötelező!"),
+    Date: yup.date().required("A dátum kötelező!"),
+});
