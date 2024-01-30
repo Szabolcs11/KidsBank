@@ -19,6 +19,8 @@ import {StackNavigatorParamsList, UserType} from '../types';
 import MainDrawer from './Drawer/index';
 import Modal from './Modal';
 import {basicScreenPreset, modalOption, navigationRef} from './settings';
+import AddReward from '../screens/StackScreens/AddReward/AddReward';
+import EditReward from '../screens/StackScreens/EditReward/EditReward';
 
 export const storage = new MMKV();
 const Stack = createStackNavigator<StackNavigatorParamsList>();
@@ -95,6 +97,18 @@ export default function index() {
               name="AddWeeklyMeeting"
               initialParams={user}
               component={AddWeeklyMeeting}
+            />
+            <Stack.Screen
+              options={{gestureEnabled: false}}
+              name="AddReward"
+              initialParams={user}
+              component={AddReward}
+            />
+            <Stack.Screen
+              options={{gestureEnabled: false}}
+              name="EditReward"
+              initialParams={{user}}
+              component={EditReward}
             />
             <Stack.Screen
               name="Modal"

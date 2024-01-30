@@ -12,6 +12,11 @@ export type StackNavigatorParamsList = {
     user?: UserType;
   };
   AddWeeklyMeeting: {};
+  AddReward: {};
+  EditReward: {
+    Reward: RewardType;
+    user?: UserType;
+  };
   Modal: {
     content: () => JSX.Element;
     title: string;
@@ -94,4 +99,12 @@ export type TaskType = {
   Name: string;
   Deadline: Date;
   Points: number;
+}
+
+export type RewardType = {
+  Id: number;
+  Name: string;
+  Points: number;
+  ChildId: number;
+  ChildName: string;
 }

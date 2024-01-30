@@ -235,6 +235,113 @@ async function addMeeting(Title, Text, Date, UserId) {
   return meeting;
 }
 
+async function getReward(RewardId) {
+  const [res] = await (
+    await conn
+  ).query(
+    "SELECT family_rewards.Id as Id, family_rewards.Name, family_rewards.Points, family_children.Id as ChildId, family_children.Nickname as ChildName FROM family_rewards INNER JOIN family_children ON family_children.Id = family_rewards.ChildId WHERE family_rewards.Id = ?",
+    [RewardId]
+  );
+  if (res.length < 1) {
+    return false;
+  }
+  return res[0];
+}
+
+async function addReward(Name, Points, UserId, ChildId) {
+  const [res] = await (
+    await conn
+  ).query("INSERT INTO family_rewards (ChildId, Name, Points, ControllerUserId) VALUES (?, ?, ?, ?)", [
+    ChildId,
+    Name,
+    Points,
+    UserId,
+  ]);
+  if (!res.insertId) {
+    return false;
+  }
+  const reward = await getReward(res.insertId);
+  return reward;
+}
+
+async function getRewards(UserId) {
+  const [res] = await (
+    await conn
+  ).query(
+    "SELECT family_rewards.Id as Id, family_rewards.Name, family_rewards.Points, family_children.Id as ChildId, family_children.Nickname as ChildName FROM family_rewards INNER JOIN family_children ON family_children.Id = family_rewards.ChildId WHERE family_rewards.ControllerUserId = ?",
+    [UserId]
+  );
+  if (res.length < 1) {
+    return [];
+  }
+  return res;
+}
+
+async function updateReward(RewardId, Name, Points, ChildId) {
+  const [res] = await (
+    await conn
+  ).query("UPDATE family_rewards SET Name = ?, Points = ?, ChildId = ? WHERE Id = ?", [
+    Name,
+    Points,
+    ChildId,
+    RewardId,
+  ]);
+  if (res.affectedRows < 1) {
+    return false;
+  }
+  const reward = await getReward(RewardId);
+  return reward;
+}
+
+async function deleteReward(RewardId) {
+  const [res] = await (await conn).query("DELETE FROM family_rewards WHERE Id = ?", [RewardId]);
+  if (res.affectedRows < 1) {
+    return false;
+  }
+  return true;
+}
+
+async function getChild(id) {
+  const [res] = await (await conn).query("SELECT * FROM family_children WHERE Id = ?", [id]);
+  if (res.length < 1) {
+    return false;
+  }
+  return res[0];
+}
+
+async function reedemReward(RewardId) {
+  const reward = await getReward(RewardId);
+  const child = await getChild(reward.ChildId);
+  console.log(child.Points);
+  console.log(reward.Points);
+  if (child.Points < reward.Points) {
+    return "NotEnoughPoints";
+  }
+  try {
+    await (await conn).beginTransaction();
+    const [rewardRows] = await (
+      await conn
+    ).execute("SELECT Points, ChildId FROM family_rewards WHERE id = ? FOR UPDATE", [RewardId]);
+    const reward = rewardRows[0];
+
+    if (!reward) {
+      throw new Error("Reward not found");
+    }
+    await (
+      await conn
+    ).execute("UPDATE family_children SET Points = Points - ? WHERE id = ?", [reward.Points, reward.ChildId]);
+    await (await conn).execute("DELETE FROM family_rewards WHERE id = ?", [RewardId]);
+    await (await conn).commit();
+    console.log("Reward redeemed successfully");
+  } catch (err) {
+    console.log(err);
+    await (await conn).rollback();
+    return false;
+  } finally {
+    return true;
+  }
+}
+
 module.exports = {
   Authenticate,
   returnError,
@@ -251,4 +358,9 @@ module.exports = {
   removeTask,
   getMeetings,
   addMeeting,
+  addReward,
+  getRewards,
+  updateReward,
+  deleteReward,
+  reedemReward,
 };

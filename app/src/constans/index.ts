@@ -15,6 +15,11 @@ export const ENDPOINTS = {
   DELETE_TASK: API_URL + '/task/delete',
   ADD_WEEKLY_MEETING: API_URL + '/weeklymeeting/add',
   GET_WEEKLY_MEETINGS: API_URL + '/weeklymeeting/get',
+  ADD_REWARD: API_URL + '/reward/add',
+  GET_REWARDS: API_URL + '/reward/get',
+  UPDATE_REWARD: API_URL + '/reward/update',
+  REDEEM_REWARD: API_URL + '/reward/redeem',
+  DELETE_REWARD: API_URL + '/reward/delete',
 }
 
 export const SCREENS = {

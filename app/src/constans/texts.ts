@@ -32,4 +32,11 @@ export const labels = {
     Title: "Cím",
     Text: "Szöveg",
     AddNewWeeklyMeeting: "Új heti megbeszélés hozzáadása",
+    AddNewReward: "Új jutalom hozzáadása",
+    Reward: "Jutalom",
+    RewardName: "Jutalom megnevezése",
+    DeleteReward: 'Jutalom törlése',
+    DeleteRewardMessage: 'Biztosan törölni szeretnéd a jutalmat?',
+    Reedem: 'Beváltás',
+
 }

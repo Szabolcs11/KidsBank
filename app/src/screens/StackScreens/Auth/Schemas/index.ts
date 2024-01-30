@@ -37,3 +37,9 @@ export const weeklyMeetingsSchema = yup.object().shape({
     Text: yup.string().required("A szöveg kötelező!"),
     Date: yup.date().required("A dátum kötelező!"),
 });
+
+export const rewardsSchema = yup.object().shape({
+    ChildId: yup.number().required("A gyermek kötelező!"),
+    Name: yup.string().required("A jutalom neve kötelező!"),
+    Points: yup.number().required("A pontok száma kötelező!"),
+});
