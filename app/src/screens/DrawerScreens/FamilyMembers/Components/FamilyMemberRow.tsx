@@ -54,7 +54,10 @@ const FamilyMemberRow = ({
     <View
       style={[
         styles.container,
-        {backgroundColor: isEven ? palette.gray : palette.white},
+        {
+          backgroundColor: isEven ? palette.gray : palette.white,
+          marginBottom: spacing.single,
+        },
       ]}>
       <Text style={{width: '5%', fontWeight: '600', color: palette.black}}>
         {children?.Id}

@@ -1,9 +1,14 @@
 import { Animated } from "react-native";
+import { string } from "yup";
 export type StackNavigatorParamsList = {
   MainDrawer: {};
   AddFamilyMember: {};
   EditFamilyMember: {
     Children: ChildrenType;
+  };
+  AddTask: {};
+  EditTask: {
+    Task: TaskType;
   };
   Modal: {
     content: () => JSX.Element;
@@ -72,5 +77,19 @@ export type ChildrenType = {
   Nickname: string;
   BirthDate: Date;
   Age: number;
+  Points: number;
+}
+
+export interface DropdownChildernType extends ChildrenType {
+  label: string;
+  value: number;
+}
+
+export type TaskType = {
+  Id: number;
+  ChildId: number;
+  ChildName: string;
+  Name: string;
+  Deadline: Date;
   Points: number;
 }

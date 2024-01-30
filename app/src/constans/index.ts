@@ -9,6 +9,12 @@ export const ENDPOINTS = {
   GET_FAMILY_MEMBERS: API_URL + '/family/get',
   UPDATE_FAMILY_MEMBER: API_URL + '/family/update',
   DELETE_FAMILY_MEMBER: API_URL + '/family/delete',
+  ADD_TASK: API_URL + '/task/add',
+  GET_TASKS: API_URL + '/task/get',
+  UPDATE_TASK: API_URL + '/task/update',
+  DELETE_TASK: API_URL + '/task/delete',
+  ADD_WEEKLY_MEETING: API_URL + '/weeklymeeting/add',
+  GET_WEEKLY_MEETINGS: API_URL + '/weeklymeeting/get',
 }
 
 export const SCREENS = {

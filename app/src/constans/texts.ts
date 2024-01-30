@@ -22,4 +22,11 @@ export const labels = {
     DeleteFamilyMemberMessage: "Biztosan törölni szeretnéd a családtagot?",
     Cancel: "Mégse",
     Delete: "Törlés",
+    AddNewTask: "Új feladat hozzáadása",
+    TaskName: "Feladat neve",
+    TaskValue: "Feladat értéke",
+    Child: "Gyerek",
+    Deadline: "Határidő",
+    DeleteTask: "Feladat törlése",
+    DeleteTaskMessage: "Biztosan törölni szeretnéd a feladatot?",
 }

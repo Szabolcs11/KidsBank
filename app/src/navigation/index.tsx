@@ -18,6 +18,8 @@ import Modal from './Modal';
 import {basicScreenPreset, modalOption, navigationRef} from './settings';
 import Loader from '../components/Loader';
 import EditFamilyMember from '../screens/StackScreens/EditFamilyMember/EditFamilyMember';
+import AddTask from '../screens/StackScreens/AddTask/AddTask';
+import EditTask from '../screens/StackScreens/EditTask/EditTask';
 
 export const storage = new MMKV();
 const Stack = createStackNavigator<StackNavigatorParamsList>();
@@ -76,6 +78,17 @@ export default function index() {
               options={{gestureEnabled: false}}
               name="EditFamilyMember"
               component={EditFamilyMember}
+            />
+            <Stack.Screen
+              options={{gestureEnabled: false}}
+              name="AddTask"
+              initialParams={user}
+              component={AddTask}
+            />
+            <Stack.Screen
+              options={{gestureEnabled: false}}
+              name="EditTask"
+              component={EditTask}
             />
             <Stack.Screen
               name="Modal"

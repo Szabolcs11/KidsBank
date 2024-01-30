@@ -134,6 +134,73 @@ async function deleteChild(ChildId) {
   return true;
 }
 
+async function createTask(ChildId, TaskName, Deadline, Points, UserId) {
+  const [res] = await (
+    await conn
+  ).query("INSERT INTO family_tasks (ChildId, Name, Deadline, Points, ControllerUserId) VALUES (?, ?, ?, ?, ?)", [
+    ChildId,
+    TaskName,
+    Deadline,
+    Points,
+    UserId,
+  ]);
+  if (!res.insertId) {
+    return false;
+  }
+  const task = await getTask(res.insertId);
+  return task;
+}
+
+async function getTask(TaskId) {
+  const [res] = await (
+    await conn
+  ).query(
+    "SELECT family_tasks.Id, family_tasks.ChildId, family_tasks.Name, family_tasks.Deadline, family_tasks.Points, family_children.Nickname as ChildName FROM family_tasks INNER JOIN family_children ON family_tasks.ChildId = family_children.Id WHERE family_tasks.Id = ?",
+    [TaskId]
+  );
+  if (res.length < 1) {
+    return false;
+  }
+  return res[0];
+}
+
+async function getTasks(UserId) {
+  const [res] = await (
+    await conn
+  ).query(
+    "SELECT family_tasks.Id as Id, family_tasks.ChildId, family_tasks.Name, family_tasks.Deadline, family_tasks.Points, family_children.Nickname as ChildName FROM family_tasks INNER JOIN family_children ON family_tasks.ChildId = family_children.Id WHERE family_tasks.ControllerUserId = ?",
+    [UserId]
+  );
+  if (res.length < 1) {
+    return [];
+  }
+  return res;
+}
+
+async function removeTask(TaskId) {
+  const [res] = await (await conn).query("DELETE FROM family_tasks WHERE Id = ?", [TaskId]);
+  if (res.affectedRows < 1) {
+    return false;
+  }
+  return true;
+}
+
+async function updateTask(ChildId, TaskName, Deadline, Points, TaskId) {
+  const [res] = await (
+    await conn
+  ).query("UPDATE family_tasks SET ChildId = ?, Name = ?, Deadline = ?, Points = ? WHERE Id = ?", [
+    ChildId,
+    TaskName,
+    Deadline,
+    Points,
+    TaskId,
+  ]);
+  if (res.affectedRows < 1) {
+    return false;
+  }
+  return true;
+}
+
 module.exports = {
   Authenticate,
   returnError,
@@ -144,4 +211,8 @@ module.exports = {
   getFamilyChildren,
   updateChild,
   deleteChild,
+  createTask,
+  getTasks,
+  updateTask,
+  removeTask,
 };

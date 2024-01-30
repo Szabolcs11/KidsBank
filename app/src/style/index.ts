@@ -51,6 +51,7 @@ export const TitleContainer: ViewStyle = {
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
+  // position: 'relative',
 };
 
 export const TitleStyle: TextStyle = {

@@ -1,5 +1,18 @@
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
-import React, {useState} from 'react';
+import {View, Text, TouchableOpacity} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StackScreenProps} from '@react-navigation/stack';
+import {
+  ChildrenType,
+  DropdownChildernType,
+  StackNavigatorParamsList,
+} from '../../../types';
+import {Controller, useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+import {tasksSchema} from '../Auth/Schemas';
+import axios from 'axios';
+import {ENDPOINTS} from '../../../constans';
+import {showToast} from '../../../navigation/Toast';
+import {fetchTasks} from '../../DrawerScreens/Tasks/TasksScreen';
 import {
   BackIconStyle,
   ButtonStyle,
@@ -14,56 +27,74 @@ import {
 } from '../../../style';
 import {navigationRef} from '../../../navigation/settings';
 import Icon, {IconType} from 'react-native-dynamic-vector-icons';
-import DatePicker from 'react-native-date-picker';
+import {TextInput} from 'react-native-gesture-handler';
 import {labels} from '../../../constans/texts';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {Controller, useForm} from 'react-hook-form';
-import {familyMembersSchema} from '../Auth/Schemas';
-import axios from 'axios';
-import {ENDPOINTS} from '../../../constans';
-import {StackNavigatorParamsList, UserType} from '../../../types';
-import {StackScreenProps} from '@react-navigation/stack';
-import {showToast} from '../../../navigation/Toast';
-import {fetchChildren} from '../../DrawerScreens/FamilyMembers/familyMembersScreen';
+import DatePicker from 'react-native-date-picker';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 interface FormData {
-  nickname: string;
-  birthDate: Date;
-  points: number;
+  ChildId: number;
+  Name: string;
+  Deadline: Date;
+  Points: number;
 }
 
-export default function AddFamilyMember({
+export default function AddTask({
   route,
   navigation,
-}: StackScreenProps<StackNavigatorParamsList, 'AddFamilyMember'>) {
+}: StackScreenProps<StackNavigatorParamsList, 'AddTask'>) {
   const {
     control,
     handleSubmit,
     formState: {errors},
   } = useForm<FormData>({
-    resolver: yupResolver(familyMembersSchema),
+    resolver: yupResolver(tasksSchema),
     defaultValues: {
-      birthDate: new Date(),
+      Deadline: new Date(),
     },
   });
-  const [datePickerIsOpen, setDatePickerIsOpen] = useState(false);
+  const [datePickerIsOpen, setDatePickerIsOpen] = useState<boolean>(false);
+  const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean>(false);
 
-  const handleAddFamilyMember = async (data: FormData) => {
-    const res = await axios.post(ENDPOINTS.ADD_FAMILY_MEMBER, {
-      nickname: data.nickname,
-      birthDate: data.birthDate,
-      points: data.points,
+  const [children, setChildren] = useState<DropdownChildernType[]>([]);
+
+  const fetchChildren = async () => {
+    let res = await axios.post(ENDPOINTS.GET_FAMILY_MEMBERS, {
       //@ts-ignore
       userId: route.params.Id,
     });
     if (res.data.success) {
-      fetchChildren();
-      showToast('success', 'Sikeresen hozzáadva');
-      navigationRef.current?.goBack();
+      res.data.children.forEach((child: DropdownChildernType) => {
+        child.label = child.Nickname;
+        child.value = child.Id;
+      });
+      setChildren(res.data.children);
     } else {
       showToast('error', res.data.message);
     }
   };
+
+  const handleAddTask = async (data: FormData) => {
+    let res = await axios.post(ENDPOINTS.ADD_TASK, {
+      ChildId: data.ChildId,
+      TaskName: data.Name,
+      Deadline: data.Deadline,
+      Points: data.Points,
+      //@ts-ignore
+      UserId: route.params.Id,
+    });
+    if (res.data.success) {
+      fetchTasks();
+      showToast('success', res.data.message);
+      navigation.goBack();
+    } else {
+      showToast('error', res.data.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchChildren();
+  }, []);
 
   return (
     <View style={ContainerStyle}>
@@ -78,7 +109,7 @@ export default function AddFamilyMember({
             size={fontSize.xlarge}
           />
         </TouchableOpacity>
-        <Text style={TitleStyle}>Családtag hozzáadása</Text>
+        <Text style={TitleStyle}>Feladat hozzáadása</Text>
       </View>
       <View
         style={{
@@ -86,27 +117,51 @@ export default function AddFamilyMember({
           marginVertical: spacing.double,
         }}>
         <Controller
-          name="nickname"
+          name="Name"
           control={control}
           rules={{required: true}}
           render={({field: {onChange, onBlur, value}}) => (
             <TextInput
               onBlur={onBlur}
               onChangeText={onChange}
-              value={value}
-              placeholder={labels.Nickname}
-              placeholderTextColor={palette.black}
+              value={value?.toString()}
+              placeholder={labels.TaskName}
               style={TextInputStyle}
+              placeholderTextColor={palette.black}
             />
           )}
         />
-        {errors.nickname ? (
-          <Text style={errortextStyle}>{errors.nickname.message}</Text>
+        {errors.Name ? (
+          <Text style={errortextStyle}>{errors.Name.message}</Text>
         ) : (
           <></>
         )}
         <Controller
-          name="birthDate"
+          name="ChildId"
+          control={control}
+          rules={{required: true}}
+          render={({field: {onChange, onBlur, value}}) => (
+            <DropDownPicker
+              placeholder="Válassz gyermeket"
+              placeholderStyle={{
+                fontSize: fontSize.medium,
+              }}
+              style={TextInputStyle}
+              open={dropdownIsOpen}
+              value={value}
+              items={children}
+              setOpen={setDropdownIsOpen}
+              setValue={(callback: any) => onChange(callback())}
+            />
+          )}
+        />
+        {errors.ChildId ? (
+          <Text style={errortextStyle}>{errors.ChildId.message}</Text>
+        ) : (
+          <></>
+        )}
+        <Controller
+          name="Deadline"
           control={control}
           rules={{required: true}}
           render={({field: {onChange, onBlur, value}}) => (
@@ -148,13 +203,14 @@ export default function AddFamilyMember({
             </>
           )}
         />
-        {errors.birthDate ? (
-          <Text style={errortextStyle}>{errors.birthDate.message}</Text>
+        {errors.Deadline ? (
+          <Text style={errortextStyle}>{errors.Deadline.message}</Text>
         ) : (
           <></>
         )}
+
         <Controller
-          name="points"
+          name="Points"
           control={control}
           rules={{required: true}}
           render={({field: {onChange, onBlur, value}}) => (
@@ -162,22 +218,22 @@ export default function AddFamilyMember({
               onBlur={onBlur}
               onChangeText={onChange}
               value={value?.toString()}
-              placeholder={labels.StarterPoints}
+              placeholder={labels.TaskValue}
               keyboardType="numeric"
               style={TextInputStyle}
               placeholderTextColor={palette.black}
             />
           )}
         />
-        {errors.points ? (
-          <Text style={errortextStyle}>{errors.points.message}</Text>
+        {errors.Points ? (
+          <Text style={errortextStyle}>{errors.Points.message}</Text>
         ) : (
           <></>
         )}
       </View>
       <TouchableOpacity
         style={ButtonStyle}
-        onPress={handleSubmit(handleAddFamilyMember)}>
+        onPress={handleSubmit(handleAddTask)}>
         <Text
           style={{
             color: palette.white,

@@ -24,3 +24,10 @@ export const updateFamilyMemberSchema = yup.object().shape({
     birthDate: yup.date().required("A születési év kötelező!"),
     points: yup.number().required("A pontok száma kötelező!"),
 })
+
+export const tasksSchema = yup.object().shape({
+    ChildId: yup.number().required("A gyermek kötelező!"),
+    Name: yup.string().required("A feladat neve kötelező!"),
+    Deadline: yup.date().required("A határidő kötelező!"),
+    Points: yup.number().required("A pontok száma kötelező!"),
+});
