@@ -1,14 +1,14 @@
-import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
-import React from 'react';
-import {alignments, palette, spacing} from '../../../../style';
-import {calculateAge} from '../../../../utils';
-import Icon, {IconType} from 'react-native-dynamic-vector-icons';
-import {labels} from '../../../../constans/texts';
-import {navigate} from '../../../../navigation/settings';
-import {ChildrenType} from '../../../../types';
-import {ENDPOINTS} from '../../../../constans';
 import axios from 'axios';
+import React from 'react';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Icon, {IconType} from 'react-native-dynamic-vector-icons';
+import {ENDPOINTS} from '../../../../constans';
+import {labels} from '../../../../constans/texts';
 import {showToast} from '../../../../navigation/Toast';
+import {navigate} from '../../../../navigation/settings';
+import {alignments, palette, spacing} from '../../../../style';
+import {ChildrenType} from '../../../../types';
+import {calculateAge} from '../../../../utils';
 import {fetchChildren} from '../familyMembersScreen';
 
 interface FamilyMemberRowProps {

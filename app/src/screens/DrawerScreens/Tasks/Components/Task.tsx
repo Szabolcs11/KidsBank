@@ -1,22 +1,15 @@
-import {
-  View,
-  Text,
-  Alert,
-  TouchableOpacity,
-  StyleSheet,
-  ScrollView,
-} from 'react-native';
-import React from 'react';
-import Icon, {IconType} from 'react-native-dynamic-vector-icons';
-import {alignments, fontSize, palette, spacing} from '../../../../style';
-import {labels} from '../../../../constans/texts';
-import {navigate, navigationRef} from '../../../../navigation/settings';
-import {TaskType} from '../../../../types';
 import axios from 'axios';
+import React from 'react';
+import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Icon, {IconType} from 'react-native-dynamic-vector-icons';
 import {ENDPOINTS} from '../../../../constans';
+import {labels} from '../../../../constans/texts';
 import {showToast} from '../../../../navigation/Toast';
-import {fetchTasks} from '../TasksScreen';
+import {navigate} from '../../../../navigation/settings';
+import {alignments, fontSize, palette, spacing} from '../../../../style';
+import {TaskType} from '../../../../types';
 import {formatDate} from '../../../../utils';
+import {fetchTasks} from '../TasksScreen';
 
 interface TaskProps {
   isHeader?: boolean;

@@ -1,18 +1,17 @@
-import {View, Text, TouchableOpacity} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {
-  ChildrenType,
-  DropdownChildernType,
-  StackNavigatorParamsList,
-} from '../../../types';
-import {Controller, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-import {tasksSchema} from '../Auth/Schemas';
+import {StackScreenProps} from '@react-navigation/stack';
 import axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import {Controller, useForm} from 'react-hook-form';
+import {Text, TouchableOpacity, View} from 'react-native';
+import DatePicker from 'react-native-date-picker';
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon, {IconType} from 'react-native-dynamic-vector-icons';
+import {TextInput} from 'react-native-gesture-handler';
 import {ENDPOINTS} from '../../../constans';
+import {labels} from '../../../constans/texts';
 import {showToast} from '../../../navigation/Toast';
-import {fetchTasks} from '../../DrawerScreens/Tasks/TasksScreen';
+import {navigationRef} from '../../../navigation/settings';
 import {
   BackIconStyle,
   ButtonStyle,
@@ -25,12 +24,9 @@ import {
   palette,
   spacing,
 } from '../../../style';
-import {navigationRef} from '../../../navigation/settings';
-import Icon, {IconType} from 'react-native-dynamic-vector-icons';
-import {TextInput} from 'react-native-gesture-handler';
-import {labels} from '../../../constans/texts';
-import DatePicker from 'react-native-date-picker';
-import DropDownPicker from 'react-native-dropdown-picker';
+import {DropdownChildernType, StackNavigatorParamsList} from '../../../types';
+import {fetchTasks} from '../../DrawerScreens/Tasks/TasksScreen';
+import {tasksSchema} from '../Auth/Schemas';
 
 interface FormData {
   ChildId: number;

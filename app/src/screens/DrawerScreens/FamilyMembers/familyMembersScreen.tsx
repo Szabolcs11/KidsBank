@@ -1,16 +1,16 @@
-import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {ContainerStyle, palette, spacing} from '../../../style';
-import FamilyMemberRow from './Components/FamilyMemberRow';
-import Icon, {IconType} from 'react-native-dynamic-vector-icons';
-import {labels} from '../../../constans/texts';
-import {navigate} from '../../../navigation/settings';
-import {ChildrenType, UserType} from '../../../types';
-import Loader from '../../../components/Loader';
 import axios from 'axios';
+import React, {useEffect, useState} from 'react';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import Icon, {IconType} from 'react-native-dynamic-vector-icons';
+import Loader from '../../../components/Loader';
 import {ENDPOINTS, MMKV_KEYS} from '../../../constans';
+import {labels} from '../../../constans/texts';
 import {storage} from '../../../navigation';
 import {showToast} from '../../../navigation/Toast';
+import {navigate} from '../../../navigation/settings';
+import {ContainerStyle, palette, spacing} from '../../../style';
+import {ChildrenType, UserType} from '../../../types';
+import FamilyMemberRow from './Components/FamilyMemberRow';
 
 export let fetchChildren: () => void;
 

@@ -9,6 +9,7 @@ export type StackNavigatorParamsList = {
   AddTask: {};
   EditTask: {
     Task: TaskType;
+    user?: UserType;
   };
   AddWeeklyMeeting: {};
   Modal: {

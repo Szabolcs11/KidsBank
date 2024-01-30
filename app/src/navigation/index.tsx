@@ -2,25 +2,23 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import axios from 'axios';
 import React, {useEffect, useState} from 'react';
-import {ActivityIndicator, View} from 'react-native';
 import {MMKV} from 'react-native-mmkv';
 import {Toast} from 'react-native-toast-message/lib/src/Toast';
+import Loader from '../components/Loader';
 import {ENDPOINTS, MMKV_KEYS} from '../constans';
+import AddFamilyMember from '../screens/StackScreens/AddFamilyMember/AddFamilyMember';
+import AddTask from '../screens/StackScreens/AddTask/AddTask';
+import AddWeeklyMeeting from '../screens/StackScreens/AddWeeklyMeeting/AddWeeklyMeeting';
 import BoardingScreen from '../screens/StackScreens/Auth/Boarding/boardingScreen';
 import ForgotPassword from '../screens/StackScreens/Auth/ForgotPassword/forgotPassword';
 import LoginScreen from '../screens/StackScreens/Auth/Login/loginScreen';
 import RegisterScreen from '../screens/StackScreens/Auth/Register/registerScreen';
-import AddFamilyMember from '../screens/StackScreens/AddFamilyMember/AddFamilyMember';
-import {palette} from '../style';
+import EditFamilyMember from '../screens/StackScreens/EditFamilyMember/EditFamilyMember';
+import EditTask from '../screens/StackScreens/EditTask/EditTask';
 import {StackNavigatorParamsList, UserType} from '../types';
 import MainDrawer from './Drawer/index';
 import Modal from './Modal';
 import {basicScreenPreset, modalOption, navigationRef} from './settings';
-import Loader from '../components/Loader';
-import EditFamilyMember from '../screens/StackScreens/EditFamilyMember/EditFamilyMember';
-import AddTask from '../screens/StackScreens/AddTask/AddTask';
-import EditTask from '../screens/StackScreens/EditTask/EditTask';
-import AddWeeklyMeeting from '../screens/StackScreens/AddWeeklyMeeting/AddWeeklyMeeting';
 
 export const storage = new MMKV();
 const Stack = createStackNavigator<StackNavigatorParamsList>();
@@ -89,6 +87,7 @@ export default function index() {
             <Stack.Screen
               options={{gestureEnabled: false}}
               name="EditTask"
+              initialParams={{user: user}}
               component={EditTask}
             />
             <Stack.Screen

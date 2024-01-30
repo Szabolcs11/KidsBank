@@ -1,16 +1,16 @@
-import {View, Text, FlatList, StyleSheet} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {ContainerStyle, palette, spacing} from '../../../style';
 import axios from 'axios';
-import {ENDPOINTS, MMKV_KEYS} from '../../../constans';
-import {showToast} from '../../../navigation/Toast';
-import Loader from '../../../components/Loader';
-import {TaskType, UserType} from '../../../types';
-import {storage} from '../../../navigation';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {navigate} from '../../../navigation/settings';
+import React, {useEffect, useState} from 'react';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import Icon, {IconType} from 'react-native-dynamic-vector-icons';
+import {TouchableOpacity} from 'react-native-gesture-handler';
+import Loader from '../../../components/Loader';
+import {ENDPOINTS, MMKV_KEYS} from '../../../constans';
 import {labels} from '../../../constans/texts';
+import {storage} from '../../../navigation';
+import {showToast} from '../../../navigation/Toast';
+import {navigate} from '../../../navigation/settings';
+import {ContainerStyle, palette, spacing} from '../../../style';
+import {TaskType, UserType} from '../../../types';
 import Task from './Components/Task';
 
 export let fetchTasks: () => void;

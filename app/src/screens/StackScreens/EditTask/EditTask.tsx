@@ -1,10 +1,16 @@
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import React, {useEffect, useState} from 'react';
-import {StackScreenProps} from '@react-navigation/stack';
-import {DropdownChildernType, StackNavigatorParamsList} from '../../../types';
-import {tasksSchema, updateFamilyMemberSchema} from '../Auth/Schemas';
 import {yupResolver} from '@hookform/resolvers/yup';
+import {StackScreenProps} from '@react-navigation/stack';
+import axios from 'axios';
+import React, {useEffect, useState} from 'react';
 import {Controller, useForm} from 'react-hook-form';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import DatePicker from 'react-native-date-picker';
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon, {IconType} from 'react-native-dynamic-vector-icons';
+import {ENDPOINTS} from '../../../constans';
+import {labels} from '../../../constans/texts';
+import {showToast} from '../../../navigation/Toast';
+import {navigationRef} from '../../../navigation/settings';
 import {
   BackIconStyle,
   ButtonStyle,
@@ -17,15 +23,9 @@ import {
   palette,
   spacing,
 } from '../../../style';
-import {labels} from '../../../constans/texts';
-import Icon, {IconType} from 'react-native-dynamic-vector-icons';
-import DatePicker from 'react-native-date-picker';
-import DropDownPicker from 'react-native-dropdown-picker';
-import {navigationRef} from '../../../navigation/settings';
-import {ENDPOINTS} from '../../../constans';
-import axios from 'axios';
-import {showToast} from '../../../navigation/Toast';
+import {DropdownChildernType, StackNavigatorParamsList} from '../../../types';
 import {fetchTasks} from '../../DrawerScreens/Tasks/TasksScreen';
+import {tasksSchema} from '../Auth/Schemas';
 
 interface FormData {
   ChildId: number;
@@ -77,7 +77,7 @@ export default function EditTask({
   const fetchChildren = async () => {
     let res = await axios.post(ENDPOINTS.GET_FAMILY_MEMBERS, {
       //@ts-ignore
-      userId: route.params.Id,
+      userId: route.params.user.Id,
     });
     if (res.data.success) {
       res.data.children.forEach((child: DropdownChildernType) => {
