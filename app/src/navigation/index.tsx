@@ -21,6 +21,7 @@ import Modal from './Modal';
 import {basicScreenPreset, modalOption, navigationRef} from './settings';
 import AddReward from '../screens/StackScreens/AddReward/AddReward';
 import EditReward from '../screens/StackScreens/EditReward/EditReward';
+import AddInvestment from '../screens/StackScreens/AddInvestment/AddInvestment';
 
 export const storage = new MMKV();
 const Stack = createStackNavigator<StackNavigatorParamsList>();
@@ -109,6 +110,12 @@ export default function index() {
               name="EditReward"
               initialParams={{user}}
               component={EditReward}
+            />
+            <Stack.Screen
+              options={{gestureEnabled: false}}
+              name="AddInvestment"
+              initialParams={{user}}
+              component={AddInvestment}
             />
             <Stack.Screen
               name="Modal"

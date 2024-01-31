@@ -367,6 +367,112 @@ async function completeTask(TaskId) {
   }
 }
 
+async function getInvestment(InvestmentId) {
+  const [res] = await (
+    await conn
+  ).query(
+    "SELECT family_investments.Id as Id, family_investments.Name, family_investments.Points, family_investments.Days, family_investments.Interest, family_children.Id as ChildId, family_children.Nickname as ChildName FROM family_investments INNER JOIN family_children ON family_children.Id = family_investments.ChildId WHERE family_investments.Id = ?",
+    [InvestmentId]
+  );
+  if (res.length < 1) {
+    return false;
+  }
+  return res[0];
+}
+
+let getInterestByDays = (Days) => {
+  switch (Days) {
+    case 7:
+      return 0.1;
+    case 14:
+      return 0.25;
+    case 31:
+      return 0.5;
+    default:
+      return false;
+  }
+};
+
+async function addInvestment(ChildId, Name, Points, Days, UserId) {
+  let Interest = getInterestByDays(Days);
+  let ExpireAt = new Date();
+  ExpireAt.setDate(ExpireAt.getDate() + Days);
+  let info = {
+    ChildId,
+    Name,
+    Points,
+    Days,
+    Interest,
+    Date: new Date(),
+    ExpireAt,
+    ControllerUserId: UserId,
+  };
+  try {
+    await (await conn).beginTransaction();
+    const [rewardRows] = await (
+      await conn
+    ).execute("SELECT Points, Id FROM family_children WHERE Id = ? FOR UPDATE", [ChildId]);
+
+    const user = rewardRows[0];
+    if (!user) {
+      throw new Error("User not found");
+    }
+    if (user.Points < Points) {
+      return "NotEnoughPoints";
+    }
+    await (await conn).execute("UPDATE family_children SET Points = Points - ? WHERE id = ?", [Points, ChildId]);
+
+    await (await conn).commit();
+
+    const [res] = await (await conn).query("INSERT INTO family_investments SET ?", [info]);
+    if (!res.insertId) {
+      return false;
+    }
+    const investment = await getInvestment(res.insertId);
+    return investment;
+  } catch (err) {
+    await (await conn).rollback();
+    return false;
+  }
+}
+
+async function getInvestments(UserId) {
+  const [res] = await (
+    await conn
+  ).query(
+    "SELECT family_investments.Id as Id, family_investments.Name, family_investments.Points, family_investments.Days, family_investments.Interest, family_investments.Date, family_investments.ExpireAt, family_children.Id as ChildId, family_children.Nickname as ChildName FROM family_investments INNER JOIN family_children ON family_children.Id = family_investments.ChildId WHERE family_investments.ControllerUserId = ?",
+    [UserId]
+  );
+  if (res.length < 1) {
+    return [];
+  }
+  return res;
+}
+
+async function deleteInvestment(InvestmentId) {
+  try {
+    await (await conn).beginTransaction();
+    const [investmentRows] = await (
+      await conn
+    ).execute("SELECT Points, ChildId FROM family_investments WHERE Id = ? FOR UPDATE", [InvestmentId]);
+    const investment = investmentRows[0];
+
+    if (!investment) {
+      throw new Error("Investment not found");
+    }
+    await (
+      await conn
+    ).execute("UPDATE family_children SET Points = Points + ? WHERE Id = ?", [investment.Points, investment.ChildId]);
+    await (await conn).execute("DELETE FROM family_investments WHERE Id = ?", [InvestmentId]);
+    await (await conn).commit();
+  } catch (err) {
+    await (await conn).rollback();
+    return false;
+  } finally {
+    return true;
+  }
+}
+
 module.exports = {
   Authenticate,
   returnError,
@@ -389,4 +495,7 @@ module.exports = {
   deleteReward,
   reedemReward,
   completeTask,
+  addInvestment,
+  getInvestments,
+  deleteInvestment,
 };

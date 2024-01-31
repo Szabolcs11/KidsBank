@@ -4,6 +4,7 @@ const app = express();
 const cors = require("cors");
 const port = process.env.PORT || 80;
 const cookieParser = require("cookie-parser");
+require("./modules/investment/investmentWatcher");
 
 app.use(cors());
 
@@ -16,6 +17,7 @@ app.use("/family", require("./routes/family"));
 app.use("/task", require("./routes/tasks"));
 app.use("/weeklymeeting", require("./routes/weeklymeeting"));
 app.use("/reward", require("./routes/reward"));
+app.use("/investment", require("./routes/investments"));
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -1,5 +1,4 @@
 import { Animated } from "react-native";
-import { string } from "yup";
 export type StackNavigatorParamsList = {
   MainDrawer: {};
   AddFamilyMember: {};
@@ -15,6 +14,9 @@ export type StackNavigatorParamsList = {
   AddReward: {};
   EditReward: {
     Reward: RewardType;
+    user?: UserType;
+  };
+  AddInvestment: {
     user?: UserType;
   };
   Modal: {
@@ -107,4 +109,16 @@ export type RewardType = {
   Points: number;
   ChildId: number;
   ChildName: string;
+}
+
+export type InvestmentType = {
+  Id: number;
+  ChildId: number;
+  ChildName: string;
+  Name: string;
+  Points: number;
+  Days: number;
+  Interest: number;
+  Date: Date;
+  ExpireAt: Date;
 }

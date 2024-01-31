@@ -21,6 +21,9 @@ export const ENDPOINTS = {
   UPDATE_REWARD: API_URL + '/reward/update',
   REDEEM_REWARD: API_URL + '/reward/redeem',
   DELETE_REWARD: API_URL + '/reward/delete',
+  GET_INVESTMENTS: API_URL + '/investment/get',
+  ADD_INVESTMENT: API_URL + '/investment/add',
+  DELETE_INVESTMENT: API_URL + '/investment/delete',
 }
 
 export const SCREENS = {

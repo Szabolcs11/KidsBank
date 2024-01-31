@@ -43,3 +43,10 @@ export const rewardsSchema = yup.object().shape({
     Name: yup.string().required("A jutalom neve kötelező!"),
     Points: yup.number().required("A pontok száma kötelező!"),
 });
+
+export const investmentsSchema = yup.object().shape({
+    ChildId: yup.number().required("A gyermek kötelező!"),
+    Name: yup.string().required("A befektetés neve kötelező!"),
+    Points: yup.number().required("A pontok száma kötelező!"),
+    Days: yup.number().required("A napok száma kötelező!"),
+});

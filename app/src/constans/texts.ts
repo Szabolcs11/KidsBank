@@ -39,5 +39,11 @@ export const labels = {
     DeleteRewardMessage: 'Biztosan törölni szeretnéd a jutalmat?',
     Reedem: 'Beváltás',
     Complete: 'Teljesítés',
-
+    AddNewInvestment: 'Új befektetés hozzáadása',
+    Days: 'Napok',
+    InvestmentName: 'Befektetés megnevezése',
+    DeleteInvestment: 'Befektetés törlése',
+    DeleteInvestmentMessage: 'Biztosan törölni szeretnéd a befektetést?',
+    InvestedPoints: 'Befektetett pontok',
+    InvestedDays: 'Befektetett napok',
 }
