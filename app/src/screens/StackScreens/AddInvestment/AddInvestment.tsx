@@ -71,6 +71,7 @@ export default function AddInvestment({
       UserId: route.params.user.Id,
     });
     if (res.data.success) {
+      fetchChildren();
       fetchInvestments();
       showToast('success', res.data.message);
       navigationRef.current?.goBack();

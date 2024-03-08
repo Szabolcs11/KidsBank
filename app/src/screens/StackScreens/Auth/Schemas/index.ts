@@ -16,7 +16,7 @@ export const registerSchema = yup.object().shape({
 export const familyMembersSchema = yup.object().shape({
     nickname: yup.string().required("A becenév kötelező!"),
     birthDate: yup.date().required("A születési év kötelező!"),
-    points: yup.number().required("A pontok száma kötelező!"),
+    // points: yup.number().required("A pontok száma kötelező!"),
 })
 
 export const updateFamilyMemberSchema = yup.object().shape({

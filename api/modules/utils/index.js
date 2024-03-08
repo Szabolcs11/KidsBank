@@ -85,13 +85,12 @@ async function deleteUserSession(token) {
   return true;
 }
 
-async function createFamilyMember(nickname, birthDate, points, userId) {
+async function createFamilyMember(nickname, birthDate, userId) {
   const [res] = await (
     await conn
-  ).query("INSERT INTO family_children (nickname, birthDate, points, ControllerUserId) VALUES (?, ?, ?, ?)", [
+  ).query("INSERT INTO family_children (nickname, birthDate, ControllerUserId) VALUES (?, ?, ?)", [
     nickname,
     birthDate,
-    points,
     userId,
   ]);
   if (!res.insertId) {
@@ -107,7 +106,7 @@ async function createFamilyMember(nickname, birthDate, points, userId) {
 async function getFamilyChildren(userId) {
   const [res] = await (await conn).query("SELECT * FROM family_children WHERE ControllerUserId = ?", [userId]);
   if (res.length < 1) {
-    return false;
+    return [];
   }
   return res;
 }

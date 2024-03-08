@@ -11,9 +11,6 @@ router.post("/", async (req, res) => {
   }
 
   let result = await deleteUserSession(req.cookies.sessiontoken);
-  if (!result) {
-    return await returnError(req, res, "Nincs ilyen token");
-  }
 
   res.clearCookie("sessiontoken");
   return res.status(200).json({

@@ -6,6 +6,8 @@ import BoardItem from './Components/BoardItem';
 import Button from './Components/Button';
 import Paginator from './Components/Paginator';
 import {boardingStyle} from './boardingStyle';
+import {storage} from '../../../../navigation';
+import {MMKV_KEYS} from '../../../../constans';
 
 const data = [
   {
@@ -65,6 +67,7 @@ export default function BoardingScreen() {
   };
 
   const handleNavigateToSingUp = () => {
+    storage.set(MMKV_KEYS.WATCHEDLANDINGPAGE, 'true');
     navigate('Register', {});
   };
 

@@ -29,7 +29,7 @@ import {fetchChildren} from '../../DrawerScreens/FamilyMembers/familyMembersScre
 interface FormData {
   nickname: string;
   birthDate: Date;
-  points: number;
+  // points: number;
 }
 
 export default function AddFamilyMember({
@@ -49,10 +49,11 @@ export default function AddFamilyMember({
   const [datePickerIsOpen, setDatePickerIsOpen] = useState(false);
 
   const handleAddFamilyMember = async (data: FormData) => {
+    console.log('asd', data);
     const res = await axios.post(ENDPOINTS.ADD_FAMILY_MEMBER, {
       nickname: data.nickname,
       birthDate: data.birthDate,
-      points: data.points,
+      // points: data.points,
       //@ts-ignore
       userId: route.params.Id,
     });
@@ -153,7 +154,7 @@ export default function AddFamilyMember({
         ) : (
           <></>
         )}
-        <Controller
+        {/* <Controller
           name="points"
           control={control}
           rules={{required: true}}
@@ -173,7 +174,7 @@ export default function AddFamilyMember({
           <Text style={errortextStyle}>{errors.points.message}</Text>
         ) : (
           <></>
-        )}
+        )} */}
       </View>
       <TouchableOpacity
         style={ButtonStyle}

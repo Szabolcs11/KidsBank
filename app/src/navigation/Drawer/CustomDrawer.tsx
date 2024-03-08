@@ -8,6 +8,7 @@ import {
 import {palette, spacing} from '../../style';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {drawerItemStyle} from './style';
+import {handleSuccessfullyLogout} from '..';
 
 const CustomDrawer = (props: any) => {
   return (
@@ -63,7 +64,9 @@ const CustomDrawer = (props: any) => {
           }}></View>
         <DrawerItem
           label="Kijelentkezés"
-          onPress={() => {}}
+          onPress={() => {
+            handleSuccessfullyLogout();
+          }}
           inactiveTintColor={palette.black}
           labelStyle={drawerItemStyle.drawerLabelStyle as any}
         />

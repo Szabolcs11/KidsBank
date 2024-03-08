@@ -9,6 +9,7 @@ import {ENDPOINTS} from '../../../../constans';
 import {showToast} from '../../../../navigation/Toast';
 import {labels} from '../../../../constans/texts';
 import {fetchInvestments} from '../BankScreen';
+import {fetchChildren} from '../../FamilyMembers/familyMembersScreen';
 
 type InvestmentsProps = {
   investment: InvestmentType;
@@ -21,6 +22,7 @@ export default function Investment({investment}: InvestmentsProps) {
     });
     if (res.data.success) {
       showToast('success', res.data.message);
+      fetchChildren();
       fetchInvestments();
     } else {
       showToast('error', res.data.message);
@@ -42,7 +44,7 @@ export default function Investment({investment}: InvestmentsProps) {
         <Icon type={IconType.AntDesign} name="calendar" size={22} />
         <Text>{`${formatDate(investment.Date)} - ${formatDate(
           investment.ExpireAt,
-        )} (${investment.Days})`}</Text>
+        )} (${investment.Days} Nap)`}</Text>
       </View>
       <View>
         <Text>{'Pontok: ' + investment.Points}</Text>
@@ -51,7 +53,7 @@ export default function Investment({investment}: InvestmentsProps) {
         <Text>
           {`Befektetés után:  ${Math.round(
             investment.Points * (1 + investment.Interest),
-          )} (${investment.Interest})`}
+          )} (${investment.Interest}%)`}
         </Text>
       </View>
       <TouchableOpacity

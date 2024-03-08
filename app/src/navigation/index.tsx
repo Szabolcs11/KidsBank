@@ -22,6 +22,7 @@ import {basicScreenPreset, modalOption, navigationRef} from './settings';
 import AddReward from '../screens/StackScreens/AddReward/AddReward';
 import EditReward from '../screens/StackScreens/EditReward/EditReward';
 import AddInvestment from '../screens/StackScreens/AddInvestment/AddInvestment';
+import {showToast} from './Toast';
 
 export const storage = new MMKV();
 const Stack = createStackNavigator<StackNavigatorParamsList>();
@@ -49,11 +50,20 @@ export default function index() {
   }, []);
 
   successfullyLogin = (user: UserType) => {
+    storage.set(MMKV_KEYS.USER, JSON.stringify(user));
     setUser(user);
   };
 
-  handleSuccessfullyLogout = () => {
-    setUser(false);
+  handleSuccessfullyLogout = async () => {
+    const res = await axios.post(ENDPOINTS.LOGOUT, {}, {withCredentials: true});
+    if (res.data.success) {
+      setWatchedBoarding(false);
+      setUser(false);
+      storage.delete(MMKV_KEYS.USER);
+      storage.delete(MMKV_KEYS.WATCHEDLANDINGPAGE);
+    } else {
+      showToast('error', res.data.message);
+    }
   };
 
   if (isLoading) {

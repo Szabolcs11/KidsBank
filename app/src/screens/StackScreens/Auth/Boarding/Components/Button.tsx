@@ -23,7 +23,7 @@ export default function Button({
           }}>
           <Text>{labels.AlreadyHaveAnAccount}</Text>
           <TouchableOpacity onPress={() => handleNavigateToLogin()}>
-            <Text style={{color: palette.primary}}>{labels.SignIn}</Text>
+            <Text style={{color: palette.secondary}}>{labels.SignIn}</Text>
           </TouchableOpacity>
         </View>
       ) : (

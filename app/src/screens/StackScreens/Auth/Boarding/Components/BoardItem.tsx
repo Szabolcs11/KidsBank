@@ -18,7 +18,7 @@ export default function BoardItem({item}: BoardItemProps) {
         <Image
           style={{width: 300, height: 200}}
           source={{
-            uri: 'https://th.bing.com/th/id/OIG.BfmdLOGiJaiTOcZXs4wX?pid=ImgGn',
+            uri: 'https://thumbs.dreamstime.com/b/parents-baby-happy-young-hugging-newborn-97503406.jpg',
           }}
         />
       </View>
