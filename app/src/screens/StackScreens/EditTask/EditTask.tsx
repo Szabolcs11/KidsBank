@@ -165,6 +165,9 @@ export default function EditTask({
           render={({field: {onChange, onBlur, value}}) => (
             <>
               <DatePicker
+                title={labels.SelectDate}
+                cancelText={labels.Cancel}
+                confirmText={labels.Save}
                 modal
                 mode="date"
                 open={datePickerIsOpen}

@@ -1,5 +1,5 @@
 import React, {useRef, useState} from 'react';
-import {Animated, FlatList, View, ViewToken} from 'react-native';
+import {Animated, FlatList, View, ViewToken, Image} from 'react-native';
 import {navigate} from '../../../../navigation/settings';
 import {BoardItemType} from '../../../../types';
 import BoardItem from './Components/BoardItem';
@@ -8,42 +8,57 @@ import Paginator from './Components/Paginator';
 import {boardingStyle} from './boardingStyle';
 import {storage} from '../../../../navigation';
 import {MMKV_KEYS} from '../../../../constans';
+// import boarding1 from './../../../../assets/Images/boarding1.png';
 
 const data = [
   {
     id: 1,
-    title: 'Welcome to KidsBank!',
+    title: 'Üdvözlünk a Kölyök Bankban!',
     subtitle:
-      'Welcome to KidsBank, the family-friendly app that teaches kids about saving and earning! Get ready to embark on a financial adventure with your children.',
-    image: 'asd',
+      'Ennek az alkalmazásnak a segítségével a gyerekek megtapasztalhatják a pénzkeresést és megtanulhatják a takarékoskodást.',
+    // image: require('./../../../../assets/Images/boarding1.png'),
   },
   {
     id: 2,
-    title: 'Family, Finance, Made Fun',
+    title: 'Család és pénzügyek',
     subtitle:
-      "In KidsBank, parents can create tasks for their children and reward them with virtual coins. It's a fun way to teach responsibility and financial management.",
-    image: 'asd',
+      'A Kölyök Bankban a szülők létrehozhatnak különféle feladatokat és pontokkal jutalmazhatják gyermekeiket. Ez a rendszer megtanítja a  gyerekeket a felelősségvállalásra és a pénzzel való gazdálkodásra.',
+    // image: require('./../../../../assets/Images/boarding2.png'),
   },
   {
     id: 3,
-    title: ' Real Rewards for Kids',
+    title: 'Türelem és spórolás',
     subtitle:
-      "Kids can spend their hard-earned coins on real-life items they love! From chocolates to toys, it's their savings brought to life.",
-    image: 'asd',
+      'A Bank funkciónak köszönhetően a gyerekek befektethetik a megkeresett pontjaikat, amit kis türelemmel megsokszorozhatnak. ',
+    // image: require('./../../../../assets/Images/boarding3.png'),
   },
   {
     id: 4,
-    title: 'Saving and Earning Together',
+    title: 'Pénzügyi célok',
     subtitle:
-      "Kids can also choose to save their virtual money in the 'Bank' for a return in the future. Parents can even schedule Weekly Meetings to track progress and set goals together.",
-    image: 'asd',
+      'A szülők heti megbeszéléseket ütemezhetnek a gyerekek pénzügyeinek nyomon követésére és közösen célokat tűzhetnek ki. ',
+    // image: require('./../../../../assets/Images/boarding4.png'),
   },
   {
     id: 5,
-    title: 'Join Us / Sign Up',
+    title: 'Jutalom a gyerekeknek',
     subtitle:
-      'Ready to get started? Join our community and experience the best of KidsBank',
-    image: 'asd',
+      'A gyerekek a kemény munkával megkeresett pontjukat beválthatják különféle tárgyakra. A csokitól a játékokig bármire, természetesen amit a szülő is jóváhagy.  ',
+    // image: require('./../../../../assets/Images/boarding5.png'),
+  },
+  {
+    id: 6,
+    title: 'Kinek ajánljuk?',
+    subtitle:
+      'Olyan családoknak, akik gyermekeiket szeretnék pénzügyileg tudatosan nevelni. Elsősorban 6 éves kortól ajánljuk.',
+    // image: require('./../../../../assets/Images/boarding6.png'),
+  },
+  {
+    id: 7,
+    title: 'Regisztráció és Bejelentkezés',
+    subtitle:
+      'Készen álltok? Csatlakozzatok közösségünkhöz, és tapasztaljátok meg a Kölyök Bank előnyeit!',
+    // image: require('./../../../../assets/Images/boarding1.png'),
   },
 ] as BoardItemType[];
 

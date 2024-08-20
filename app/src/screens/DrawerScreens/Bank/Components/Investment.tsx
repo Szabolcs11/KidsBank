@@ -44,7 +44,7 @@ export default function Investment({investment}: InvestmentsProps) {
         <Icon type={IconType.AntDesign} name="calendar" size={22} />
         <Text>{`${formatDate(investment.Date)} - ${formatDate(
           investment.ExpireAt,
-        )} (${investment.Days} Nap)`}</Text>
+        )} (${investment.Days} nap)`}</Text>
       </View>
       <View>
         <Text>{'Pontok: ' + investment.Points}</Text>
@@ -53,7 +53,7 @@ export default function Investment({investment}: InvestmentsProps) {
         <Text>
           {`Befektetés után:  ${Math.round(
             investment.Points * (1 + investment.Interest),
-          )} (${investment.Interest}%)`}
+          )} ( +${investment.Interest * 100}%)`}
         </Text>
       </View>
       <TouchableOpacity

@@ -46,4 +46,5 @@ export const labels = {
     DeleteInvestmentMessage: 'Biztosan törölni szeretnéd a befektetést?',
     InvestedPoints: 'Befektetett pontok',
     InvestedDays: 'Befektetett napok',
+    SelectDate: 'Dátum kiválasztása',
 }

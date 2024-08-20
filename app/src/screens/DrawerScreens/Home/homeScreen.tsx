@@ -26,7 +26,8 @@ export default function HomeScreen() {
   return (
     <View style={{gap: spacing.single, alignItems: 'center'}}>
       <Text>HomeScreen</Text>
-      <TouchableOpacity
+      <Text>Ide valami hosszab szöveg, esetleg kép</Text>
+      {/* <TouchableOpacity
         style={{
           width: 200,
           height: 125,
@@ -74,7 +75,7 @@ export default function HomeScreen() {
         }}
         onPress={() => handleLogout()}>
         <Text>Kijelentkezés</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 }

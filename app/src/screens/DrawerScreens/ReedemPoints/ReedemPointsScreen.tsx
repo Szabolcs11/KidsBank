@@ -62,6 +62,13 @@ export default function ReedemPointsScreen() {
 
   return (
     <View style={[ContainerStyle, {justifyContent: 'center'}]}>
+      <View style={style.labelContainer}>
+        <Text style={{textAlign: 'center'}}>
+          A gyerekek a kemény munkával megkeresett pontjukat beválthatják
+          különféle tárgyakra. A csokitól a játékokig bármire, természetesen
+          amit a szülő is jóváhagy.
+        </Text>
+      </View>
       <View style={{maxHeight: 400}}>
         <FlatList
           data={rewards}
@@ -94,5 +101,11 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     gap: spacing.single,
     margin: spacing.double,
+  },
+  labelContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    textAlign: 'center',
+    marginVertical: 25,
   },
 });

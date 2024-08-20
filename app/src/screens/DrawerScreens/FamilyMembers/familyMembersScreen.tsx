@@ -43,6 +43,13 @@ export default function FamilyMembersScreen() {
 
   return (
     <View style={[ContainerStyle, {justifyContent: 'center'}]}>
+      <View style={style.labelContainer}>
+        <Text style={{textAlign: 'center'}}>
+          A Kölyök Bankban a szülők létrehozhatnak különféle feladatokat és
+          pontokkal jutalmazhatják gyermekeiket. Ez a rendszer megtanítja a
+          gyerekeket a felelősségvállalásra és a pénzzel való gazdálkodásra.
+        </Text>
+      </View>
       <View style={{maxHeight: 400}}>
         <FlatList
           data={children}
@@ -77,5 +84,11 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     gap: spacing.single,
     margin: spacing.double,
+  },
+  labelContainer: {
+    width: '100%',
+    justifyContent: 'center',
+    textAlign: 'center',
+    marginVertical: 25,
   },
 });

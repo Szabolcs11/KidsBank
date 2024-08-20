@@ -49,7 +49,6 @@ export default function AddFamilyMember({
   const [datePickerIsOpen, setDatePickerIsOpen] = useState(false);
 
   const handleAddFamilyMember = async (data: FormData) => {
-    console.log('asd', data);
     const res = await axios.post(ENDPOINTS.ADD_FAMILY_MEMBER, {
       nickname: data.nickname,
       birthDate: data.birthDate,
@@ -113,6 +112,9 @@ export default function AddFamilyMember({
           render={({field: {onChange, onBlur, value}}) => (
             <>
               <DatePicker
+                title={labels.SelectDate}
+                cancelText={labels.Cancel}
+                confirmText={labels.Save}
                 modal
                 mode="date"
                 open={datePickerIsOpen}

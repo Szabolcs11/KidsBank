@@ -150,7 +150,7 @@ export default function AddInvestment({
               placeholderStyle={{
                 fontSize: fontSize.medium,
               }}
-              style={TextInputStyle}
+              style={[TextInputStyle, {zIndex: 99999}]}
               open={dropdownIsOpen}
               value={value}
               items={children}
@@ -196,7 +196,7 @@ export default function AddInvestment({
               placeholderStyle={{
                 fontSize: fontSize.medium,
               }}
-              style={TextInputStyle}
+              style={[TextInputStyle, {zIndex: 0}]}
               open={daysDropdownIsOpen}
               value={value}
               items={InvestmentLengths}
