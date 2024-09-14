@@ -1,4 +1,4 @@
-import {API_URL} from "@env"
+import {API_URL} from '@env';
 
 export const ENDPOINTS = {
   AUTH: API_URL + '/auth/authenticate',
@@ -24,21 +24,21 @@ export const ENDPOINTS = {
   GET_INVESTMENTS: API_URL + '/investment/get',
   ADD_INVESTMENT: API_URL + '/investment/add',
   DELETE_INVESTMENT: API_URL + '/investment/delete',
-}
+};
 
 export const SCREENS = {
-    HOME: 'Home',
-    FAMILY_MEMBERS: 'FamilyMembers',
-    TASKS: 'Tasks',
-    WEEKLY_MEEETINGS: 'WeeklyMeetings',
-    REEDEM_POINTS: 'RedeemPoints',
-    BANK: 'Bank',
-  };
-  
-  export const MMKV_KEYS = {
-    USER: 'USER',
-    WATCHEDLANDINGPAGE: 'WATCHEDLANDINGPAGE',
-    TOKEN: 'TOKEN',
-    CURRENTROOM: 'CURRENTROOM',
-    FCMTOKEN: 'FCMTOKEN',
-  };
+  HOME: 'Home',
+  FAMILY_MEMBERS: 'FamilyMembers',
+  TASKS: 'Tasks',
+  WEEKLY_MEEETINGS: 'WeeklyMeetings',
+  REEDEM_POINTS: 'RedeemPoints',
+  BANK: 'Bank',
+};
+
+export const MMKV_KEYS = {
+  USER: 'USER',
+  WATCHEDLANDINGPAGE: 'WATCHEDLANDINGPAGE',
+  TOKEN: 'TOKEN',
+  CURRENTROOM: 'CURRENTROOM',
+  FCMTOKEN: 'FCMTOKEN',
+};

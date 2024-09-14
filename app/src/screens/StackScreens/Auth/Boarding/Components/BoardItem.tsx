@@ -17,7 +17,7 @@ const {width} = Dimensions.get('window');
 // ];
 
 const images: {[key: string]: any} = {
-  boarding0: require('./../../../../../assets/Images/boarding1.png'),
+  boarding0: require('./../../../../../assets/Images/boarding2.png'),
   boarding1: require('./../../../../../assets/Images/boarding2.png'),
   boarding2: require('./../../../../../assets/Images/boarding3.png'),
   boarding3: require('./../../../../../assets/Images/boarding4.png'),
@@ -39,7 +39,7 @@ export default function BoardItem({item}: BoardItemProps) {
         {item.id != 7 ? (
           <Image
             style={{width: 300, height: 200}}
-            source={images[`boarding${item.id - 1}`!]}
+            source={images[`boarding2`!]}
           />
         ) : (
           <>

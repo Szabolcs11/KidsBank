@@ -1,6 +1,7 @@
 import React from 'react';
-import {ActivityIndicator, View} from 'react-native';
+import {ActivityIndicator, Text, View} from 'react-native';
 import {palette} from '../style';
+import {ENDPOINTS} from '../constans';
 
 export default function Loader() {
   return (
@@ -11,6 +12,7 @@ export default function Loader() {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
+      <Text>{ENDPOINTS.AUTH}</Text>
       <ActivityIndicator size="large" color={palette.primary} />
     </View>
   );
