@@ -116,6 +116,8 @@ export default function AddWeeklyMeeting({
               value={value}
               placeholder={labels.Text}
               multiline={true}
+              textAlignVertical='top'
+              numberOfLines={4}
               placeholderTextColor={palette.black}
               style={TextInputStyle}
             />
@@ -133,7 +135,7 @@ export default function AddWeeklyMeeting({
           render={({field: {onChange, onBlur, value}}) => (
             <>
               <DatePicker
-                title={labels.SelectDate}
+                title={labels.Meeting_Date}
                 cancelText={labels.Cancel}
                 confirmText={labels.Save}
                 modal

@@ -84,6 +84,7 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     gap: spacing.single,
     margin: spacing.double,
+    marginBottom: spacing.quadruple,
   },
   labelContainer: {
     width: '100%',

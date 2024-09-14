@@ -146,7 +146,7 @@ export default function AddInvestment({
           rules={{required: true}}
           render={({field: {onChange, onBlur, value}}) => (
             <DropDownPicker
-              placeholder="Válassz gyermeket"
+              placeholder={labels.Chose_Child}
               placeholderStyle={{
                 fontSize: fontSize.medium,
               }}
@@ -192,7 +192,7 @@ export default function AddInvestment({
           rules={{required: true}}
           render={({field: {onChange, onBlur, value}}) => (
             <DropDownPicker
-              placeholder="Válassz befektetés hosszúságot"
+              placeholder={labels.Chose_Investment_Lenght}
               placeholderStyle={{
                 fontSize: fontSize.medium,
               }}

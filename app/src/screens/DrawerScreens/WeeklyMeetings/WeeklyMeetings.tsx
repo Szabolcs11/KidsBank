@@ -43,7 +43,7 @@ export default function WeeklyMeetings() {
   }
   return (
     <View style={[ContainerStyle]}>
-      <View style={{maxHeight: '90%'}}>
+      <View style={{maxHeight: '86%'}}>
         <FlatList
           showsVerticalScrollIndicator={false}
           data={weeklyMeetings}

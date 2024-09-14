@@ -112,7 +112,7 @@ export default function AddFamilyMember({
           render={({field: {onChange, onBlur, value}}) => (
             <>
               <DatePicker
-                title={labels.SelectDate}
+                title={labels.Child_BirthDate}
                 cancelText={labels.Cancel}
                 confirmText={labels.Save}
                 modal

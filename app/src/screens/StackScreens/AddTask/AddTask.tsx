@@ -163,7 +163,7 @@ export default function AddTask({
           render={({field: {onChange, onBlur, value}}) => (
             <>
               <DatePicker
-                title={labels.SelectDate}
+                title={labels.Task_Deadline}
                 cancelText={labels.Cancel}
                 confirmText={labels.Save}
                 modal
