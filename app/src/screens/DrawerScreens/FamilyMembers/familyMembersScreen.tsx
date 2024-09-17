@@ -77,7 +77,6 @@ export default function FamilyMembersScreen() {
 
 const style = StyleSheet.create({
   btnContainer: {
-    justifyContent: 'center',
     backgroundColor: palette.secondary,
     paddingHorizontal: spacing.double,
     paddingVertical: spacing.single,
