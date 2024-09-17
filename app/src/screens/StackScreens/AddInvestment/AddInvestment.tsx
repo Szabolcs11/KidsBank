@@ -43,8 +43,16 @@ const InvestmentLengths = [
     value: 14,
   },
   {
-    label: '31 nap',
-    value: 31,
+    label: '1 Hónap',
+    value: 30,
+  },
+  {
+    label: '3 Hónap',
+    value: 90,
+  },
+  {
+    label: '6 Hónap',
+    value: 180,
   },
 ];
 

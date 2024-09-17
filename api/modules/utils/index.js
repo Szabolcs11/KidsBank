@@ -382,13 +382,17 @@ async function getInvestment(InvestmentId) {
 let getInterestByDays = (Days) => {
   switch (Days) {
     case 7:
-      return 0.1;
+      return 0.02;
     case 14:
-      return 0.25;
-    case 31:
-      return 0.5;
+      return 0.06;
+    case 30:
+      return 0.18;
+    case 90:
+      return 0.8;
+    case 180:
+      return 2.4;
     default:
-      return false;
+      return 0;
   }
 };
 
