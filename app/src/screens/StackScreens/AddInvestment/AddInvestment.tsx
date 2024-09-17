@@ -25,6 +25,7 @@ import {investmentsSchema} from '../Auth/Schemas';
 import {labels} from '../../../constans/texts';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {fetchInvestments} from '../../DrawerScreens/Bank/BankScreen';
+import {fetchDatas} from '../../DrawerScreens/Home/homeScreen';
 
 interface FormData {
   ChildId: number;
@@ -81,6 +82,7 @@ export default function AddInvestment({
     if (res.data.success) {
       fetchChildren();
       fetchInvestments();
+      fetchDatas();
       showToast('success', res.data.message);
       navigationRef.current?.goBack();
     } else {

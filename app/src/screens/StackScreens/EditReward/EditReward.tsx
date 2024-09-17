@@ -26,6 +26,7 @@ import Icon, {IconType} from 'react-native-dynamic-vector-icons';
 import {TextInput} from 'react-native-gesture-handler';
 import {labels} from '../../../constans/texts';
 import DropDownPicker from 'react-native-dropdown-picker';
+import {fetchDatas} from '../../DrawerScreens/Home/homeScreen';
 
 interface FormData {
   ChildId: number;
@@ -80,6 +81,7 @@ export default function EditReward({
     });
     if (res.data.success) {
       fetchRewards();
+      fetchDatas();
       showToast('success', res.data.message);
       navigationRef.current?.goBack();
     } else {

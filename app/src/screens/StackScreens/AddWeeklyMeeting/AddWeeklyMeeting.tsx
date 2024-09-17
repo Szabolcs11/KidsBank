@@ -25,6 +25,7 @@ import {
 import {StackNavigatorParamsList} from '../../../types';
 import {fetchMeetings} from '../../DrawerScreens/WeeklyMeetings/WeeklyMeetings';
 import {weeklyMeetingsSchema} from '../Auth/Schemas';
+import {fetchDatas} from '../../DrawerScreens/Home/homeScreen';
 
 interface FormData {
   Title: string;
@@ -58,6 +59,7 @@ export default function AddWeeklyMeeting({
     });
     if (res.data.success) {
       fetchMeetings();
+      fetchDatas();
       showToast('success', res.data.message);
       navigationRef.current?.goBack();
     } else {
@@ -116,7 +118,7 @@ export default function AddWeeklyMeeting({
               value={value}
               placeholder={labels.Text}
               multiline={true}
-              textAlignVertical='top'
+              textAlignVertical="top"
               numberOfLines={4}
               placeholderTextColor={palette.black}
               style={TextInputStyle}

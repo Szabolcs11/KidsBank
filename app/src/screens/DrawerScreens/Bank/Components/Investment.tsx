@@ -10,6 +10,7 @@ import {showToast} from '../../../../navigation/Toast';
 import {labels} from '../../../../constans/texts';
 import {fetchInvestments} from '../BankScreen';
 import {fetchChildren} from '../../FamilyMembers/familyMembersScreen';
+import {fetchDatas} from '../../Home/homeScreen';
 
 type InvestmentsProps = {
   investment: InvestmentType;
@@ -24,6 +25,7 @@ export default function Investment({investment}: InvestmentsProps) {
       showToast('success', res.data.message);
       fetchChildren();
       fetchInvestments();
+      fetchDatas();
     } else {
       showToast('error', res.data.message);
     }

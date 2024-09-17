@@ -26,6 +26,7 @@ import {
 import {DropdownChildernType, StackNavigatorParamsList} from '../../../types';
 import {fetchTasks} from '../../DrawerScreens/Tasks/TasksScreen';
 import {tasksSchema} from '../Auth/Schemas';
+import {fetchDatas} from '../../DrawerScreens/Home/homeScreen';
 
 interface FormData {
   ChildId: number;
@@ -68,6 +69,7 @@ export default function EditTask({
     if (res.data.success) {
       showToast('success', res.data.message);
       fetchTasks();
+      fetchDatas();
       navigationRef.current?.goBack();
     } else {
       showToast('error', res.data.message);

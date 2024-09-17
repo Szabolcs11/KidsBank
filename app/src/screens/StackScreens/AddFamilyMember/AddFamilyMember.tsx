@@ -25,6 +25,7 @@ import {StackNavigatorParamsList, UserType} from '../../../types';
 import {StackScreenProps} from '@react-navigation/stack';
 import {showToast} from '../../../navigation/Toast';
 import {fetchChildren} from '../../DrawerScreens/FamilyMembers/familyMembersScreen';
+import {fetchDatas} from '../../DrawerScreens/Home/homeScreen';
 
 interface FormData {
   nickname: string;
@@ -58,6 +59,7 @@ export default function AddFamilyMember({
     });
     if (res.data.success) {
       fetchChildren();
+      fetchDatas();
       showToast('success', 'Sikeresen hozzáadva');
       navigationRef.current?.goBack();
     } else {

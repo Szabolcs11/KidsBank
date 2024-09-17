@@ -10,6 +10,7 @@ import {alignments, palette, spacing} from '../../../../style';
 import {ChildrenType} from '../../../../types';
 import {calculateAge} from '../../../../utils';
 import {fetchChildren} from '../familyMembersScreen';
+import {fetchDatas} from '../../Home/homeScreen';
 
 interface FamilyMemberRowProps {
   isHeader?: boolean;
@@ -45,6 +46,7 @@ const FamilyMemberRow = ({
     if (res.data.success) {
       showToast('success', res.data.message);
       fetchChildren();
+      fetchDatas();
     } else {
       showToast('error', res.data.message);
     }

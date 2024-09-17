@@ -11,6 +11,7 @@ import {TaskType} from '../../../../types';
 import {formatDate} from '../../../../utils';
 import {fetchTasks} from '../TasksScreen';
 import {fetchChildren} from '../../FamilyMembers/familyMembersScreen';
+import {fetchDatas} from '../../Home/homeScreen';
 
 interface TaskProps {
   isHeader?: boolean;
@@ -26,6 +27,7 @@ export default function Task({isEven, isHeader, task}: TaskProps) {
     if (res.data.success) {
       showToast('success', res.data.message);
       fetchTasks();
+      fetchDatas();
     } else {
       showToast('error', res.data.message);
     }
@@ -39,6 +41,7 @@ export default function Task({isEven, isHeader, task}: TaskProps) {
       showToast('success', res.data.message);
       fetchTasks();
       fetchChildren();
+      fetchDatas();
     } else {
       showToast('error', res.data.message);
     }

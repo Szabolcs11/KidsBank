@@ -16,6 +16,7 @@ import {labels} from '../../../../constans/texts';
 import Icon, {IconType} from 'react-native-dynamic-vector-icons';
 import {navigate} from '../../../../navigation/settings';
 import {fetchChildren} from '../../FamilyMembers/familyMembersScreen';
+import {fetchDatas} from '../../Home/homeScreen';
 
 type RewardProps = {
   reward?: RewardType;
@@ -31,6 +32,7 @@ export default function Reward({reward, isHeader, isEven}: RewardProps) {
     if (res.data.success) {
       showToast('success', res.data.message);
       fetchRewards();
+      fetchDatas();
     } else {
       showToast('error', res.data.message);
     }
@@ -44,6 +46,7 @@ export default function Reward({reward, isHeader, isEven}: RewardProps) {
       showToast('success', res.data.message);
       fetchRewards();
       fetchChildren();
+      fetchDatas();
     } else {
       showToast('error', res.data.message);
     }

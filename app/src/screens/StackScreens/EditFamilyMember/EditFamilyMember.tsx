@@ -26,6 +26,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {updateFamilyMemberSchema} from '../Auth/Schemas';
 import {StackScreenProps} from '@react-navigation/stack';
 import {StackNavigatorParamsList} from '../../../types';
+import {fetchDatas} from '../../DrawerScreens/Home/homeScreen';
 
 interface FormData {
   nickname: string;
@@ -59,6 +60,7 @@ export default function EditFamilyMember({
     });
     if (res.data.success) {
       fetchChildren();
+      fetchDatas();
       showToast('success', res.data.message);
       navigationRef.current?.goBack();
     } else {
