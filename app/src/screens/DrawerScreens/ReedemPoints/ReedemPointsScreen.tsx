@@ -43,7 +43,7 @@ export default function ReedemPointsScreen() {
   if (rewards.length === 0) {
     return (
       <View style={[ContainerStyle, {justifyContent: 'center'}]}>
-        <View style={{maxHeight: 400}}>
+        <View style={{maxHeight: '86%'}}>
           <Text>Nem található jutalom</Text>
         </View>
         <TouchableOpacity
@@ -62,14 +62,14 @@ export default function ReedemPointsScreen() {
 
   return (
     <View style={[ContainerStyle, {justifyContent: 'center'}]}>
-      <View style={style.labelContainer}>
-        <Text style={{textAlign: 'center'}}>
-          A gyerekek a kemény munkával megkeresett pontjukat beválthatják
-          különféle tárgyakra. A csokitól a játékokig bármire, természetesen
-          amit a szülő is jóváhagy.
-        </Text>
-      </View>
-      <View style={{maxHeight: 400}}>
+      <View style={{maxHeight: '86%'}}>
+        <View style={style.labelContainer}>
+          <Text style={{textAlign: 'center'}}>
+            A gyerekek a kemény munkával megkeresett pontjukat beválthatják
+            különféle tárgyakra. A csokitól a játékokig bármire, természetesen
+            amit a szülő is jóváhagy.
+          </Text>
+        </View>
         <FlatList
           data={rewards}
           ListHeaderComponent={() => <Reward isHeader />}
@@ -106,6 +106,6 @@ const style = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     textAlign: 'center',
-    marginVertical: 25,
+    marginBottom: 14
   },
 });

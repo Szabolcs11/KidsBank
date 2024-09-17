@@ -40,7 +40,7 @@ const CustomDrawer = (props: any) => {
               width: '100%',
               color: palette.white,
             }}>
-            KidsBank
+            Kölyök Bank
           </Text>
         </View>
         <TouchableOpacity

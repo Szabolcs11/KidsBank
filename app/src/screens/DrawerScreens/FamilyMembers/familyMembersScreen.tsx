@@ -43,6 +43,7 @@ export default function FamilyMembersScreen() {
 
   return (
     <View style={[ContainerStyle, {justifyContent: 'center'}]}>
+      <View style={{maxHeight: "86%"}}>
       <View style={style.labelContainer}>
         <Text style={{textAlign: 'center'}}>
           A Kölyök Bankban a szülők létrehozhatnak különféle feladatokat és
@@ -50,7 +51,6 @@ export default function FamilyMembersScreen() {
           gyerekeket a felelősségvállalásra és a pénzzel való gazdálkodásra.
         </Text>
       </View>
-      <View style={{maxHeight: 400}}>
         <FlatList
           data={children}
           ListHeaderComponent={() => {
@@ -77,6 +77,7 @@ export default function FamilyMembersScreen() {
 
 const style = StyleSheet.create({
   btnContainer: {
+    justifyContent: 'center',
     backgroundColor: palette.secondary,
     paddingHorizontal: spacing.double,
     paddingVertical: spacing.single,
@@ -84,12 +85,11 @@ const style = StyleSheet.create({
     flexDirection: 'row',
     gap: spacing.single,
     margin: spacing.double,
-    marginBottom: spacing.quadruple,
   },
   labelContainer: {
     width: '100%',
     justifyContent: 'center',
     textAlign: 'center',
-    marginVertical: 25,
+    marginBottom: 14
   },
 });
