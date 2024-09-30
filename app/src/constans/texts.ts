@@ -25,6 +25,7 @@ export const labels = {
   AddNewTask: 'Új feladat hozzáadása',
   TaskName: 'Feladat neve',
   TaskValue: 'Feladat értéke',
+  RewardValue: 'Jutalom értéke',
   Child: 'Gyerek',
   Deadline: 'Határidő',
   DeleteTask: 'Feladat törlése',

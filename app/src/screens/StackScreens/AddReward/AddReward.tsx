@@ -159,7 +159,7 @@ export default function AddReward({
               onBlur={onBlur}
               onChangeText={onChange}
               value={value?.toString()}
-              placeholder={labels.TaskValue}
+              placeholder={labels.RewardValue}
               keyboardType="numeric"
               style={TextInputStyle}
               placeholderTextColor={palette.black}
