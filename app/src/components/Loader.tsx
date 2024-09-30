@@ -12,7 +12,6 @@ export default function Loader() {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-      <Text>{ENDPOINTS.AUTH}</Text>
       <ActivityIndicator size="large" color={palette.primary} />
     </View>
   );
